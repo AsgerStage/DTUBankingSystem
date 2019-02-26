@@ -1,0 +1,16 @@
+﻿
+@{
+    
+    ViewBag.Title = "Index";
+    DTUBankingSystem.Models.Account acc = ViewBag.Content[0];
+}
+
+<h2>Index</h2>
+<div>
+    Account name: @acc.AccountName <br />
+    Account type: @acc.AccountType <br />
+    Currency: @acc.Currency <br />
+    Country: @acc.Country <br />
+    ID: @acc.ID <br />
+</div>
+
