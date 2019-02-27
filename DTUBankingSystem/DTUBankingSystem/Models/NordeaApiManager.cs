@@ -1,7 +1,10 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Diagnostics;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace DTUBankingSystem.Models
 {
@@ -33,14 +36,17 @@ namespace DTUBankingSystem.Models
                 var response = client.PostAsync(requestPath, req.Content).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    var contents = await response.Content.ReadAsStringAsync();
-                    token = contents.Split(',')[5].Split(':')[1].Trim('"').Trim('\\');
+                    var contents = await response.Content.ReadAsStringAsync()
+                    dynamic jsonObj = JsonConvert.DeserializeObject(contents);
+                    token = jsonObj.response.tpp_token.Value;
                 }
+
+
                 return token;
             }
         }
 
-        public async Task<string> GetAllAccounts()
+        public async Task<string> PollForAuthCode()
         {
             string token = "";
             var requestPath = _apiBaseUrl + "authorize-decoupled";
@@ -61,7 +67,8 @@ namespace DTUBankingSystem.Models
                 if (response.IsSuccessStatusCode)
                 {
                     var contents = await response.Content.ReadAsStringAsync();
-                    token = contents.Split(',')[5].Split(':')[1].Trim('"').Trim('\\');
+                    dynamic jsonObj = JsonConvert.DeserializeObject(contents);
+                    token = jsonObj.response.code.Value;
                 }
                 return token;
             }
