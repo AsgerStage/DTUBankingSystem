@@ -11,7 +11,7 @@ namespace DTUBankingSystemTests.API_ConnectionTests
         public async System.Threading.Tasks.Task GetTokenStringTestAsync()
         {
             var nordeaApiManager = new NordeaApiManager();
-            var result = await nordeaApiManager.GetAccessTokenAsync();
+            var result = await nordeaApiManager.GetTppTokenAsync();
             Assert.IsFalse(string.IsNullOrWhiteSpace(result));
         }
 

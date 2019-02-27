@@ -45,32 +45,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Carbon.Data.Protection, Version=0.20.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Carbon.Data.Protection.0.20.0\lib\netstandard2.0\Carbon.Data.Protection.dll</HintPath>
-    </Reference>
-    <Reference Include="Carbon.Json, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Carbon.Json.1.9.0\lib\netstandard2.0\Carbon.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Carbon.Packaging, Version=1.29.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Carbon.Packaging.1.29.1\lib\netstandard2.0\Carbon.Packaging.dll</HintPath>
-    </Reference>
-    <Reference Include="Carbon.Storage, Version=1.17.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Carbon.Storage.1.17.0\lib\netstandard2.0\Carbon.Storage.dll</HintPath>
-    </Reference>
-    <Reference Include="Carbon.VersionControl, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Carbon.VersionControl.1.9.0\lib\netstandard2.0\Carbon.VersionControl.dll</HintPath>
-    </Reference>
-    <Reference Include="Carbon.Versioning, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Carbon.Versioning.1.5.0\lib\netstandard2.0\Carbon.Versioning.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="GitHub, Version=1.13.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GitHub.1.13.2\lib\netstandard2.0\GitHub.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
