@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Transactions";
+    DtuNetbank.Models.Transaction[] transactions = ViewBag.Transactions;
+}
+
+<h2>These are the transactions for @ViewBag.id</h2>
+<table>
+    <thead>
+        Amount
+    </thead>
+    <tbody>
+        @foreach(var t in transactions)
+        {
+            <tr>
+                <td>
+                    @t.TransactionAmount
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

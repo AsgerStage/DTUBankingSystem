@@ -54,6 +54,7 @@ namespace DtuNetbank.Controllers
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
+            var userId = User.Identity.GetUserId();
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -61,9 +62,12 @@ namespace DtuNetbank.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.AddAccountIDSuccess? $"Your Account was added {userId}" 
                 : "";
 
-            var userId = User.Identity.GetUserId();
+            ViewBag.User =  new Models.User();
+            Account[] accs = { new Account() {AccountId = "TEST_TEST"} };
+            ViewBag.User.Accounts = accs;
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
@@ -74,7 +78,29 @@ namespace DtuNetbank.Controllers
             };
             return View(model);
         }
-
+        public async Task<ActionResult> ViewTransactions(string id)
+        {
+            ViewBag.id = id;
+            Transaction testdata = new Transaction
+            {
+                TransactionAmount = 200
+            };
+            Transaction[] transactions = {testdata};
+            ViewBag.Transactions = transactions;
+            return View();
+        }
+        public async Task<ActionResult> RemoveAccountID(string id)
+        {
+            return RedirectToAction("Index", new { Message = ManageMessageId.Error});
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddAccountID(string AccountID)
+        {
+            ManageMessageId? message;
+            message = ManageMessageId.AddAccountIDSuccess;
+            return RedirectToAction("Index", new { Message = message });
+        }
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]
@@ -381,6 +407,7 @@ namespace DtuNetbank.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
+            AddAccountIDSuccess,
             Error
         }
 

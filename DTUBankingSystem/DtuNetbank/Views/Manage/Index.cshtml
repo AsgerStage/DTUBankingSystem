@@ -1,6 +1,7 @@
 ﻿@model DtuNetbank.Models.IndexViewModel
 @{
     ViewBag.Title = "Manage";
+    DtuNetbank.Models.Account[] accs  = ViewBag.User.Accounts;
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -10,6 +11,37 @@
     <h4>Change your account settings</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>Bank Accounts:</dt>
+        <dd>
+            @{
+                @:Add a new bank account
+                using (Html.BeginForm("AddAccountID","Manage",FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="text" name="AccountID" placeholder="Enter Account ID"/>
+                    <input type="submit" name="Submit" value="Add" class="btn-secondary"/>
+                }
+                <br />
+                    if ((accs?.Length ?? 0) == 0)
+                    {
+                    <i>You currently have no bank accounts registered.</i>
+                    }
+                    else
+                    {
+                    <ul>
+                    @foreach (var a in accs)
+                    {
+                        <li>@a.AccountId
+                        @Html.ActionLink("View Transactions" , "ViewTransactions" , "Manage", new {id = a.AccountId}, null)
+                         | 
+                        @Html.ActionLink("Remove" , "RemoveAccountID","Manage" , new { id = a.AccountId},null)
+                        </li>
+                    }
+                    </ul>
+                    }
+
+            }
+        </dd>
         <dt>Password:</dt>
         <dd>
             [
