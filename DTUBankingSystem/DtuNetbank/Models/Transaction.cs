@@ -1,15 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace DtuNetbank.Models
 {
     public class Transaction
     {
-        private long Id { get; set; }
-        private DateTime TransactionDate { get; set; }
-        private long AccountNumber { get; set; }
+        [Key]
+        [Required]
+        public Guid Id { get; set; } = Guid.NewGuid();
+        
+        [Required]
+        public Guid BankAccountId { get; set; }
+        [DisplayName("Bank konto")]
+        [Required]
+        public BankAccount Account { get; set; }
+
+        [DisplayName("Transaktions Dato")]
+        [Required]
+        public DateTime TransactionDate { get; set; }
+
+        [DisplayName("Konto Nummer")]
+        [Required]
+        public long AccountNumber { get; set; }
+
+        [DisplayName("Transaktions Beløb")]
+        [Required]
         public decimal TransactionAmount { get; set; }
 
     }

@@ -7,7 +7,7 @@ namespace DtuNetbank.Models
 {
     public class User
     {
-        public Account[] Accounts { get; set;}
+        public BankAccount[] BankAccounts { get; set;}
 
     }
 }

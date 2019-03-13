@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -10,6 +11,8 @@ namespace DtuNetbank.Models
     public class ApplicationUser : IdentityUser
     {
         public string Name { get; set; }
+        public ICollection<BankAccount> BankAccounts { get; set; }
+        
     
     public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -31,5 +34,9 @@ namespace DtuNetbank.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<BankAccount> BankAccounts { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+
     }
 }

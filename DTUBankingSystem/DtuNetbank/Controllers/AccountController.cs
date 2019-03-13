@@ -53,7 +53,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // GET: /Account/Login
+        // GET: /BankAccount/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -62,7 +62,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // POST: /Account/Login
+        // POST: /BankAccount/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -92,7 +92,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // GET: /Account/VerifyCode
+        // GET: /BankAccount/VerifyCode
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
@@ -105,7 +105,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // POST: /Account/VerifyCode
+        // POST: /BankAccount/VerifyCode
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -135,7 +135,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // GET: /Account/Register
+        // GET: /BankAccount/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -143,7 +143,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // POST: /Account/Register
+        // POST: /BankAccount/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -160,7 +160,7 @@ namespace DtuNetbank.Controllers
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "BankAccount", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
@@ -173,7 +173,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // GET: /Account/ConfirmEmail
+        // GET: /BankAccount/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
@@ -186,7 +186,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // GET: /Account/ForgotPassword
+        // GET: /BankAccount/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
@@ -194,7 +194,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // POST: /Account/ForgotPassword
+        // POST: /BankAccount/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -212,9 +212,9 @@ namespace DtuNetbank.Controllers
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
                 // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                // var callbackUrl = Url.Action("ResetPassword", "BankAccount", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
                 // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                // return RedirectToAction("ForgotPasswordConfirmation", "BankAccount");
             }
 
             // If we got this far, something failed, redisplay form
@@ -222,7 +222,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // GET: /Account/ForgotPasswordConfirmation
+        // GET: /BankAccount/ForgotPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
@@ -230,7 +230,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // GET: /Account/ResetPassword
+        // GET: /BankAccount/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
@@ -238,7 +238,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // POST: /Account/ResetPassword
+        // POST: /BankAccount/ResetPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -264,7 +264,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // GET: /Account/ResetPasswordConfirmation
+        // GET: /BankAccount/ResetPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
@@ -272,7 +272,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // POST: /Account/ExternalLogin
+        // POST: /BankAccount/ExternalLogin
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -283,7 +283,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // GET: /Account/SendCode
+        // GET: /BankAccount/SendCode
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
@@ -298,7 +298,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // POST: /Account/SendCode
+        // POST: /BankAccount/SendCode
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -318,7 +318,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // GET: /Account/ExternalLoginCallback
+        // GET: /BankAccount/ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
@@ -348,7 +348,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // POST: /Account/ExternalLoginConfirmation
+        // POST: /BankAccount/ExternalLoginConfirmation
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -386,7 +386,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // POST: /Account/LogOff
+        // POST: /BankAccount/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -396,7 +396,7 @@ namespace DtuNetbank.Controllers
         }
 
         //
-        // GET: /Account/ExternalLoginFailure
+        // GET: /BankAccount/ExternalLoginFailure
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {

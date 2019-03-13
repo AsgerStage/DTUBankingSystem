@@ -62,12 +62,9 @@ namespace DtuNetbank.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : message == ManageMessageId.AddAccountIDSuccess? $"Your Account was added {userId}" 
+                : message == ManageMessageId.AddAccountIDSuccess? $"Your BankAccount was added {userId}" 
                 : "";
 
-            ViewBag.User =  new Models.User();
-            Account[] accs = { new Account() {AccountId = "TEST_TEST"} };
-            ViewBag.User.Accounts = accs;
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),

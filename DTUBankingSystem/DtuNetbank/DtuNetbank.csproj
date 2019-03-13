@@ -206,8 +206,12 @@
     <Compile Include="Migrations\201903061200242_Name.Designer.cs">
       <DependentUpon>201903061200242_Name.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903131118393_AddedBankAccountsAndTransactions.cs" />
+    <Compile Include="Migrations\201903131118393_AddedBankAccountsAndTransactions.Designer.cs">
+      <DependentUpon>201903131118393_AddedBankAccountsAndTransactions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -315,6 +319,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Manage\ViewTransactions.cshtml" />
+    <Content Include="Views\Transactions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -327,6 +332,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903061200242_Name.resx">
       <DependentUpon>201903061200242_Name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903131118393_AddedBankAccountsAndTransactions.resx">
+      <DependentUpon>201903131118393_AddedBankAccountsAndTransactions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
