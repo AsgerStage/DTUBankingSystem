@@ -199,6 +199,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Netbank\BankAccountController.cs" />
+    <Compile Include="Controllers\Netbank\PortalController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,6 +211,10 @@
     <Compile Include="Migrations\201903131118393_AddedBankAccountsAndTransactions.cs" />
     <Compile Include="Migrations\201903131118393_AddedBankAccountsAndTransactions.Designer.cs">
       <DependentUpon>201903131118393_AddedBankAccountsAndTransactions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903131415571_TransactionDescription.cs" />
+    <Compile Include="Migrations\201903131415571_TransactionDescription.Designer.cs">
+      <DependentUpon>201903131415571_TransactionDescription.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BankAccount.cs" />
@@ -319,6 +325,8 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Manage\ViewTransactions.cshtml" />
     <Content Include="Views\Transactions.cshtml" />
+    <Content Include="Views\BankAccount\Accounts.cshtml" />
+    <Content Include="Views\BankAccount\Transactions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -334,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903131118393_AddedBankAccountsAndTransactions.resx">
       <DependentUpon>201903131118393_AddedBankAccountsAndTransactions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903131415571_TransactionDescription.resx">
+      <DependentUpon>201903131415571_TransactionDescription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

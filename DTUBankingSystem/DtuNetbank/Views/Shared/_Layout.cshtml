@@ -15,12 +15,21 @@
         </button>
         @Html.ActionLink("My Web Portal", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
+            @if (Request.IsAuthenticated)
+            {
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Accounts", "Index", "BankAccount", null, new { @class = "nav-link" })</li>
+                </ul>
+            }
+            else
+            {
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
+                </ul>
+            }
 
-            <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
-            </ul>
             @Html.Partial("_LoginPartial")
         </div>
     </div>

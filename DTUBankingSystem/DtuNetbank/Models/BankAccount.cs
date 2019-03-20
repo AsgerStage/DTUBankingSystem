@@ -16,7 +16,7 @@ namespace DtuNetbank.Models
         public string AccountName { get; set; }
         public string IBAN { get; set; }
 
-        private ICollection<Transaction> Transactions { get; set; }
+        public ICollection<Transaction> Transactions { get; set; }
 
 
     }
