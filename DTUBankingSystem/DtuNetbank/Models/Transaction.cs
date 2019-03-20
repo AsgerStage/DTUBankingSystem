@@ -55,6 +55,35 @@ namespace DtuNetbank.Models
         public BankAccount BankAccount { get; }
     }
 
+    public class TransactionResponseJsonModel
+    {
+        public string continuation_key { get; set; }
+        public ICollection<TransactionJsonModel> transactions { get; set; }
+        public ICollection<Link> _links { get; set; }
+    }
+
+    public class TransactionJsonModel
+    {
+        public string _type { get; set; }
+        public string transaction_id { get; set; }
+        public string currency { get; set; }
+        public string booking_date { get; set; }
+        public string value_date { get; set; }
+        public string type_description { get; set; }
+        public string narrative { get; set; }
+        public string message { get; set; }
+        public string status { get; set; }
+        public string reference { get; set; }
+        public string own_message { get; set; }
+        public string counterparty_name { get; set; }
+        public string transaction_date { get; set; }
+        public string card_number { get; set; }
+        public string payment_date { get; set; }
+        public string amount { get; set; }
+
+}
+
+
 
 
 }
