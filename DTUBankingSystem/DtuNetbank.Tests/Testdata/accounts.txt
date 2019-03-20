@@ -1,0 +1,87 @@
+﻿{
+    "group_header": {
+        "message_identification": "r_lZoH3Y2rk",
+        "creation_date_time": "2019-03-20T11:28:45.722Z",
+        "http_code": 200
+    },
+    "response": {
+        "accounts": [
+            {
+                "country": "FI",
+                "account_numbers": [
+                    {
+                        "value": "FI6593857450293470",
+                        "_type": "IBAN"
+                    }
+                ],
+                "currency": "EUR",
+                "account_name": "Aino Salo",
+                "product": "KÄYTTÖTILI",
+                "account_type": "Current",
+                "available_balance": "-260.99",
+                "booked_balance": "-273.09",
+                "value_dated_balance": "-273.09",
+                "bank": {
+                    "name": "Nordea",
+                    "bic": "NDEAFIHH",
+                    "country": "FI"
+                },
+                "status": "OPEN",
+                "credit_limit": "100.00",
+                "latest_transaction_booking_date": "2019-03-19",
+                "_links": [
+                    {
+                        "rel": "details",
+                        "href": "/v3/accounts/FI6593857450293470-EUR"
+                    },
+                    {
+                        "rel": "transactions",
+                        "href": "/v3/accounts/FI6593857450293470-EUR/transactions"
+                    }
+                ],
+                "_id": "FI6593857450293470-EUR"
+            },
+            {
+                "country": "FI",
+                "account_numbers": [
+                    {
+                        "value": "FI7473834510057469",
+                        "_type": "IBAN"
+                    }
+                ],
+                "currency": "EUR",
+                "account_name": "Aino Salo",
+                "product": "KÄYTTÖTILI",
+                "account_type": "Current",
+                "available_balance": "88.20",
+                "booked_balance": "76.10",
+                "value_dated_balance": "76.10",
+                "bank": {
+                    "name": "Nordea",
+                    "bic": "NDEAFIHH",
+                    "country": "FI"
+                },
+                "status": "OPEN",
+                "credit_limit": "100.00",
+                "latest_transaction_booking_date": "2019-03-20",
+                "_links": [
+                    {
+                        "rel": "details",
+                        "href": "/v3/accounts/FI7473834510057469-EUR"
+                    },
+                    {
+                        "rel": "transactions",
+                        "href": "/v3/accounts/FI7473834510057469-EUR/transactions"
+                    }
+                ],
+                "_id": "FI7473834510057469-EUR"
+            }
+        ],
+        "_links": [
+            {
+                "rel": "self",
+                "href": "/v3/accounts"
+            }
+        ]
+    }
+}
