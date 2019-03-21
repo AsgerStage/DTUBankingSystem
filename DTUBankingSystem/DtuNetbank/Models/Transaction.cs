@@ -42,17 +42,17 @@ namespace DtuNetbank.Models
     public class TransactionViewModel
     {
         public ApplicationUser User { get; }
-        public TransactionViewModel(BankAccount bankAccount, IEnumerable<Transaction> transactions, ApplicationUser user)
+        public TransactionViewModel(string accountNumber, IEnumerable<TransactionJsonModel> transactions, ApplicationUser user)
         {
+            AccountNumber = accountNumber;
             Transactions = transactions;
             User = user;
-            BankAccount = bankAccount;
         }
 
-        public DateTime PeriodStartDate => Transactions.Min(t => t.TransactionDate);
-        public DateTime PeriodEndDate => Transactions.Max(t => t.TransactionDate);
-        public IEnumerable<Transaction> Transactions { get; }
-        public BankAccount BankAccount { get; }
+        //public DateTime PeriodStartDate => Transactions.Min(t => t.TransactionDate);
+        //public DateTime PeriodEndDate => Transactions.Max(t => t.TransactionDate);
+        public IEnumerable<TransactionJsonModel> Transactions { get; }
+        public string AccountNumber { get; set; }
     }
 
     public class TransactionResponseJsonModel

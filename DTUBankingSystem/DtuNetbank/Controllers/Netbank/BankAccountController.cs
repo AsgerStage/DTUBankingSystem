@@ -15,7 +15,12 @@ namespace DtuNetbank.Controllers.Netbank
         public ActionResult Index()
         {
             var user = GetCurrentUser();
-            var accounts = GetUserAccounts();
+            var accountJsonModels = GetAccounts();
+            var accounts = accountJsonModels.Select(a => new BankAccount()
+            {
+                AccountName = a.account_name, IBAN = a._id,
+                AccountNumber = a.account_numbers.Single(i => i._type == "BBAN_DK").value, User = user
+            }).ToList();
             return View("Accounts", accounts);
         }
         
@@ -32,5 +37,23 @@ namespace DtuNetbank.Controllers.Netbank
                 return accounts;
             }
         }
+
+
+        private ICollection<BankAccountJsonModel> GetAccounts()
+        {
+            var nordeaApiManager = new NordeaAPIv3Manager();
+            var accounts = nordeaApiManager.GetAccounts();
+            return accounts;
+        }
+
+        public ActionResult Transactions(string accountId)
+        {
+            var user = GetCurrentUser();
+            var jsonTransactions = new NordeaAPIv3Manager().GetTransactions(accountId, DateTime.Today.AddMonths(-3), DateTime.Today);
+            
+            var model = new TransactionViewModel(accountId, jsonTransactions,user);
+            return View(model);
+        }
+
     }
 }

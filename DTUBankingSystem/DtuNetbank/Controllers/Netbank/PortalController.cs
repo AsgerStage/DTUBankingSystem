@@ -28,9 +28,11 @@ namespace DtuNetbank.Controllers.Netbank
             }
         }
 
-        protected IIdentity GetCurrentUser()
+        protected ApplicationUser GetCurrentUser()
         {
-            return User.Identity;
+            var user = UserManager.Users;
+            var oneUser = user.FirstOrDefault(i => i.Name == User.Identity.Name);
+            return oneUser;
         }
 
     }

@@ -1,65 +1,34 @@
 ﻿{
     "group_header": {
-        "message_identification": "r_lZoH3Y2rk",
-        "creation_date_time": "2019-03-20T11:28:45.722Z",
+        "message_identification": "hcIUFoYaFfw",
+        "creation_date_time": "2019-03-20T23:25:04.244Z",
         "http_code": 200
     },
     "response": {
         "accounts": [
             {
-                "country": "FI",
+                "country": "DK",
                 "account_numbers": [
                     {
-                        "value": "FI6593857450293470",
-                        "_type": "IBAN"
-                    }
-                ],
-                "currency": "EUR",
-                "account_name": "Aino Salo",
-                "product": "KÄYTTÖTILI",
-                "account_type": "Current",
-                "available_balance": "-260.99",
-                "booked_balance": "-273.09",
-                "value_dated_balance": "-273.09",
-                "bank": {
-                    "name": "Nordea",
-                    "bic": "NDEAFIHH",
-                    "country": "FI"
-                },
-                "status": "OPEN",
-                "credit_limit": "100.00",
-                "latest_transaction_booking_date": "2019-03-19",
-                "_links": [
-                    {
-                        "rel": "details",
-                        "href": "/v3/accounts/FI6593857450293470-EUR"
+                        "value": "20301544117544",
+                        "_type": "BBAN_DK"
                     },
                     {
-                        "rel": "transactions",
-                        "href": "/v3/accounts/FI6593857450293470-EUR/transactions"
-                    }
-                ],
-                "_id": "FI6593857450293470-EUR"
-            },
-            {
-                "country": "FI",
-                "account_numbers": [
-                    {
-                        "value": "FI7473834510057469",
+                        "value": "DK3420301544117544",
                         "_type": "IBAN"
                     }
                 ],
-                "currency": "EUR",
-                "account_name": "Aino Salo",
-                "product": "KÄYTTÖTILI",
+                "currency": "DKK",
+                "account_name": "Anders Madsen",
+                "product": "Grundkonto",
                 "account_type": "Current",
-                "available_balance": "88.20",
-                "booked_balance": "76.10",
-                "value_dated_balance": "76.10",
+                "available_balance": "6016.56",
+                "booked_balance": "6004.46",
+                "value_dated_balance": "6004.46",
                 "bank": {
                     "name": "Nordea",
-                    "bic": "NDEAFIHH",
-                    "country": "FI"
+                    "bic": "NDEADKKK",
+                    "country": "DK"
                 },
                 "status": "OPEN",
                 "credit_limit": "100.00",
@@ -67,14 +36,53 @@
                 "_links": [
                     {
                         "rel": "details",
-                        "href": "/v3/accounts/FI7473834510057469-EUR"
+                        "href": "/v3/accounts/DK20301544117544-DKK"
                     },
                     {
                         "rel": "transactions",
-                        "href": "/v3/accounts/FI7473834510057469-EUR/transactions"
+                        "href": "/v3/accounts/DK20301544117544-DKK/transactions"
                     }
                 ],
-                "_id": "FI7473834510057469-EUR"
+                "_id": "DK20301544117544-DKK"
+            },
+            {
+                "country": "DK",
+                "account_numbers": [
+                    {
+                        "value": "20301544118028",
+                        "_type": "BBAN_DK"
+                    },
+                    {
+                        "value": "DK6120301544118028",
+                        "_type": "IBAN"
+                    }
+                ],
+                "currency": "DKK",
+                "account_name": "Anders Madsen",
+                "product": "Private Banking konto",
+                "account_type": "Current",
+                "available_balance": "4595.12",
+                "booked_balance": "4583.02",
+                "value_dated_balance": "4583.02",
+                "bank": {
+                    "name": "Nordea",
+                    "bic": "NDEADKKK",
+                    "country": "DK"
+                },
+                "status": "OPEN",
+                "credit_limit": "100.00",
+                "latest_transaction_booking_date": "2019-03-20",
+                "_links": [
+                    {
+                        "rel": "details",
+                        "href": "/v3/accounts/DK20301544118028-DKK"
+                    },
+                    {
+                        "rel": "transactions",
+                        "href": "/v3/accounts/DK20301544118028-DKK/transactions"
+                    }
+                ],
+                "_id": "DK20301544118028-DKK"
             }
         ],
         "_links": [

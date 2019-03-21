@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Ajax.Utilities;
 using RestSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -54,6 +53,13 @@ namespace DtuNetbank.Models
             return accessToken;
         }
 
+        public ICollection<BankAccountJsonModel> GetAccounts()
+        {
+            var code = StartOauth();
+            var token = ExchangeToken(code);
+            var accounts = GetAccounts(token);
+            return accounts;
+        }
 
         public ICollection<BankAccountJsonModel> GetAccounts(string accessToken)
         {
@@ -93,6 +99,21 @@ namespace DtuNetbank.Models
             var json = JsonConvert.SerializeObject(response.Content);
             return json;
         }
+
+
+        internal ICollection<TransactionJsonModel> GetTransactions(string accountId, DateTime minValue, DateTime maxValue)
+        {
+            var jsonModel = GetTransactions(accountId, minValue, maxValue, "", GetAccessToken());
+            return jsonModel.transactions;
+        }
+
+        private string GetAccessToken()
+        {
+            var code = StartOauth();
+            var token = ExchangeToken(code);
+            return token;
+        }
+
 
         public TransactionResponseJsonModel GetTransactions(string accountId, DateTime startDate, DateTime endDate, string continuationKey, string accessToken)
         {

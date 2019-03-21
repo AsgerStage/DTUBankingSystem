@@ -38,6 +38,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.IBAN)
         </td>
+        <td>@Html.ActionLink("Show Transactions", "Transactions", routeValues: new {accountId = item.IBAN})</td>
     </tr>
 }
 

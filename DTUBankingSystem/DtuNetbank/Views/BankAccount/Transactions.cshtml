@@ -1,13 +1,11 @@
 ﻿@model DtuNetbank.Models.TransactionViewModel
 
 @{
-    ViewBag.Title = "Transaktioner for "+ Model.BankAccount.AccountName;
+    ViewBag.Title = "Transaktioner for "+ Model.AccountNumber;
 }
 
-<h2>Transaktioner for @Model.BankAccount.AccountName</h2>
-<h5>@Model.BankAccount.AccountNumber</h5>
-
-<table>
+<h2>Transaktioner for @Model.AccountNumber </h2>
+<table style="width: 100%">
     <thead>
         <tr>
             <td>Dato</td>
@@ -20,9 +18,9 @@
     @foreach (var transaction in Model.Transactions)
     {
         <tr>
-            <td>@transaction.TransactionDate.ToShortDateString()</td>
-            <td>@transaction.Description</td>
-            <td>@transaction.TransactionAmount</td>
+            <td>@transaction.transaction_date</td>
+            <td>@transaction.narrative</td>
+            <td>@transaction.amount</td>
         </tr>
     }
     </tbody>
