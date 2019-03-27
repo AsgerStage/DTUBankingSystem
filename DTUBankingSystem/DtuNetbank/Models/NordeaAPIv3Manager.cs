@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Microsoft.Ajax.Utilities;
 using RestSharp;
 using Newtonsoft.Json;
@@ -10,14 +11,43 @@ namespace DtuNetbank.Models
 {
     public class NordeaAPIv3Manager
     {
+        private static Mutex mut = new Mutex();
+        private static long expirationTimestamp = 0;
         private const string ClientId = "9dce38b7-30e9-49c9-b8a3-6f10b9c9367c";
         private const string ClientSecret = "U5tL8iY2hP3jM5rX7wV7aF0mX8rE6wG1hP7qG7gX0lT5uQ4jN5";
+        private string _accesstoken;
+        public string AccessToken
+        {
+            get
+            {
+                long currentTime = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
+                try
+                {
+                    mut.WaitOne();
+                    if (string.IsNullOrWhiteSpace(_accesstoken) || currentTime >= expirationTimestamp)
+                    {
+                        string code = StartOauth();
+                        string token = ExchangeToken(code);
+                        _accesstoken = token;
+                    }
+                }
+                catch (Exception e)
+                {
 
+                }
+                finally
+                {
+                    mut.ReleaseMutex();
+                }
+                return _accesstoken;
+            }
+        }
         /// <summary>
         /// Metoden sender en request til serveren og tager imod OAuth Code som skal bruges i ExchangeToken metode
         /// </summary>
-        public string StartOauth()
+        private string StartOauth()
         {
+            
             var client = new RestClient("https://api.nordeaopenbanking.com/v3/authorize?state=oauth2&client_id="+ClientId+"&scope=ACCOUNTS_BASIC,ACCOUNTS_BALANCES,ACCOUNTS_DETAILS,ACCOUNTS_TRANSACTIONS,PAYMENTS_MULTIPLE&duration=1234&redirect_uri=https://httpbin.org&country=DK");
             client.FollowRedirects = false;
             var request = new RestRequest(Method.GET);
@@ -36,8 +66,9 @@ namespace DtuNetbank.Models
         /// <summary>
         /// Methoden spørger efter en AccessToken fra API Serveren og returnerer response content
         /// </summary>
-        public string ExchangeToken(string code)
+        private string ExchangeToken(string code)
         {
+            long currentTime = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
             var client = new RestClient("https://api.nordeaopenbanking.com/v3/authorize/token");
             client.FollowRedirects = false;
             var request = new RestRequest(Method.POST);
@@ -51,6 +82,7 @@ namespace DtuNetbank.Models
 
             JObject objects = JObject.Parse(response.Content);
             var accessToken = objects["access_token"].ToString();
+            expirationTimestamp = currentTime + (long)objects["expires_in"];
             return accessToken;
         }
 
