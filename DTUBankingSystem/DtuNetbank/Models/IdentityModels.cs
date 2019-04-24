@@ -11,7 +11,7 @@ namespace DtuNetbank.Models
     public class ApplicationUser : IdentityUser
     {
         public string Name { get; set; }
-        public ICollection<BankAccount> BankAccounts { get; set; }
+        public ICollection<string> BankAccountIds { get; set; }
         
     
     public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

@@ -219,6 +219,10 @@
     <Compile Include="Migrations\201903131415571_TransactionDescription.Designer.cs">
       <DependentUpon>201903131415571_TransactionDescription.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904241224045_UserBankAccounts.cs" />
+    <Compile Include="Migrations\201904241224045_UserBankAccounts.Designer.cs">
+      <DependentUpon>201904241224045_UserBankAccounts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -349,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903131415571_TransactionDescription.resx">
       <DependentUpon>201903131415571_TransactionDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904241224045_UserBankAccounts.resx">
+      <DependentUpon>201904241224045_UserBankAccounts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -17,13 +17,13 @@
     <input type="submit" value="Update" class="btn btn-primary"/>
 }
 
-<h2>Transaktioner for @Model.AccountNumber </h2>
+<h3>Transaktioner for @Model.AccountNumber </h3>
 <table style="width: 100%">
     <thead>
         <tr>
-            <td>Dato</td>
-            <td>Beskrivelse</td>
-            <td>beløb</td>
+            <th>Transaktions dato</th>
+            <th>Beskrivelse</th>
+            <th style="text-align: right">Beløb (DKK)</th>
         </tr>
     </thead>
     
@@ -33,7 +33,7 @@
         <tr>
             <td>@transaction.transaction_date</td>
             <td>@transaction.narrative</td>
-            <td>@transaction.amount</td>
+            <td style="text-align: right">@transaction.amount</td>
         </tr>
     }
     </tbody>

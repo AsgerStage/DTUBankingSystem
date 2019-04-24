@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,14 +12,16 @@ namespace DtuNetbank.Models
 
         public Guid UserId { get; set; }
         public ApplicationUser User { get; set; }
-
+        [Display(Name = "Kontonummer")]
         public string AccountNumber { get; set; }
+        [Display(Name = "Konto beskrivelse")]
         public string AccountName { get; set; }
+        [Display(Name = "ID")]
         public string IBAN { get; set; }
+        [Display(Name = "Saldo")]
+        public decimal Balance { get; set;}
 
         public ICollection<Transaction> Transactions { get; set; }
-
-
     }
 
     public class BankAccountJsonModel

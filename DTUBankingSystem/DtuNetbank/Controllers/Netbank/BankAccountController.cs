@@ -19,7 +19,8 @@ namespace DtuNetbank.Controllers.Netbank
             var accounts = accountJsonModels.Select(a => new BankAccount()
             {
                 AccountName = a.account_name, IBAN = a._id,
-                AccountNumber = a.account_numbers.Single(i => i._type == "BBAN_DK").value, User = user
+                AccountNumber = a.account_numbers.Single(i => i._type == "BBAN_DK").value, User = user,
+                Balance = decimal.Parse(a.available_balance)
             }).ToList();
             return View("Accounts", accounts);
         }
