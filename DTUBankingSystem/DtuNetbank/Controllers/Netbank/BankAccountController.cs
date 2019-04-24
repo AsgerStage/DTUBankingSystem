@@ -46,12 +46,14 @@ namespace DtuNetbank.Controllers.Netbank
             return accounts;
         }
 
-        public ActionResult Transactions(string accountId)
+        public ActionResult Transactions(string accountId, DateTime? startDate, DateTime? endDate)
         {
             var user = GetCurrentUser();
-            var jsonTransactions = new NordeaAPIv3Manager().GetTransactions(accountId, DateTime.Today.AddMonths(-3), DateTime.Today);
+            var trxEndDate = endDate ?? DateTime.Today;
+            var trxStartDate = startDate ?? trxEndDate.AddMonths(-3);
+            var jsonTransactions = new NordeaAPIv3Manager().GetTransactions(accountId, trxStartDate, trxEndDate);
             
-            var model = new TransactionViewModel(accountId, jsonTransactions,user);
+            var model = new TransactionViewModel(accountId, jsonTransactions, user);
             return View(model);
         }
 

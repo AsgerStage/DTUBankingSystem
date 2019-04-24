@@ -2,6 +2,19 @@
 
 @{
     ViewBag.Title = "Transaktioner for "+ Model.AccountNumber;
+    var minDate = Model.Transactions.Min(t => t.transaction_date);
+    var maxDate = Model.Transactions.Max(t => t.transaction_date);
+}
+
+
+@using (Html.BeginForm("transactions", "BankAccount", FormMethod.Get))
+{ 
+    @Html.Hidden("accountId", Model.AccountNumber)
+    <label>Start Date</label>
+    <input type="date" name="startDate" value="@minDate"/>
+    <label>End Date</label>
+    <input type="date" name="endDate" value="@maxDate"/>
+    <input type="submit" value="Update" class="btn btn-primary"/>
 }
 
 <h2>Transaktioner for @Model.AccountNumber </h2>
