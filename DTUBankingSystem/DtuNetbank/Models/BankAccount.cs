@@ -10,8 +10,7 @@ namespace DtuNetbank.Models
     {
         public Guid Id { get; set; }
 
-        public Guid UserId { get; set; }
-        public ApplicationUser User { get; set; }
+       public ApplicationUser User { get; set; }
         [Display(Name = "Kontonummer")]
         public string AccountNumber { get; set; }
         [Display(Name = "Konto beskrivelse")]
@@ -22,6 +21,13 @@ namespace DtuNetbank.Models
         public decimal Balance { get; set;}
 
         public ICollection<Transaction> Transactions { get; set; }
+    }
+    public class RegisterAccountModel
+    {
+     
+        [Required]
+        [Display(Name = "IBAN")]
+        public string IBAN { get; set; }
     }
 
     public class BankAccountJsonModel
