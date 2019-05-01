@@ -39,9 +39,9 @@ namespace DtuNetbank.Controllers.Netbank
             AccountMessageId responseMsg;
             using (var db = new ApplicationDbContext())
             {
-                var accounts  = db.BankAccounts.Where(a => a.UserId.ToString() == userid 
+                var accounts  = db.BankAccounts.Where(a => a.User.Id == userid 
                                                         && a.AccountNumber.ToString() == accountId).ToList();
-                if(accounts.Count > 0)
+                if(accounts.Count() > 0)
                     responseMsg = AccountMessageId.AccountAlreadyAdded;
                 else{
                     var accountJsonModels = GetAccounts();
