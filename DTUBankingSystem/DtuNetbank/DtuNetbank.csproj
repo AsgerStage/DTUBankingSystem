@@ -223,6 +223,10 @@
     <Compile Include="Migrations\201904241224045_UserBankAccounts.Designer.cs">
       <DependentUpon>201904241224045_UserBankAccounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904301533166_removeuserid.cs" />
+    <Compile Include="Migrations\201904301533166_removeuserid.Designer.cs">
+      <DependentUpon>201904301533166_removeuserid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -335,6 +339,7 @@
     <Content Include="Views\Transactions.cshtml" />
     <Content Include="Views\BankAccount\Accounts.cshtml" />
     <Content Include="Views\BankAccount\Transactions.cshtml" />
+    <Content Include="Views\BankAccount\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -356,6 +361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904241224045_UserBankAccounts.resx">
       <DependentUpon>201904241224045_UserBankAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904301533166_removeuserid.resx">
+      <DependentUpon>201904301533166_removeuserid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

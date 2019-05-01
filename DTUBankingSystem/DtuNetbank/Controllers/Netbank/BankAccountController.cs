@@ -65,7 +65,11 @@ namespace DtuNetbank.Controllers.Netbank
             }
             return RedirectToAction("Index", "BankAccount" , new { Message = responseMsg });
         }
-        
+
+
+        public ActionResult Register() {
+            return View("Register");
+        }
 
 
         private IEnumerable<BankAccount> GetUserAccounts()
@@ -75,7 +79,7 @@ namespace DtuNetbank.Controllers.Netbank
                 throw new Exception("User is not identified");
             using (var db = new ApplicationDbContext())
             {
-                var accounts = db.BankAccounts.Include(a => a.Transactions).Where(a => a.UserId.ToString() == userid).ToArray();
+                var accounts = db.BankAccounts.Include(a => a.Transactions).Where(a => a.User.Id.ToString() == userid).ToArray();
                 return accounts;
             }
         }
