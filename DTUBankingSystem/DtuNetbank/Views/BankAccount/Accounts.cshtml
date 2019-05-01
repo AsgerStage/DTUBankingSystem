@@ -3,7 +3,14 @@
 @{
     ViewBag.Title = "Accounts";
 }
-
+@using (Html.BeginForm("AddAccount", "BankAccount", FormMethod.Get))
+{
+    
+    <label>IBAN</label>
+    <input type="text" name="accountId"/>
+    <input type="submit" value="Add" class="btn btn-primary" />
+    @ViewBag.statusMessage
+}
 <h2>Accounts</h2>
 
 
