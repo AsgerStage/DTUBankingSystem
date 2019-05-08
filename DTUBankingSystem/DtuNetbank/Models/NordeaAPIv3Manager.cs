@@ -92,6 +92,14 @@ namespace DtuNetbank.Models
             return accounts;
         }
 
+        public BankAccountJsonModel GetAccountByAccountId(String id)
+        {
+            var code = StartOauth();
+            var token = ExchangeToken(code);
+            var account = GetAccountDetailByAccountId(id,token);
+            if (account._id == null) return null;
+            return account;
+        }
         public ICollection<BankAccountJsonModel> GetAccounts(string accessToken)
         {
             var client = new RestClient("https://api.nordeaopenbanking.com/v3/accounts");
@@ -115,7 +123,7 @@ namespace DtuNetbank.Models
         }
 
 
-        public string GetAccountDetailByAccountId(string accountId, string accessToken)
+        public BankAccountJsonModel GetAccountDetailByAccountId(string accountId, string accessToken)
         {
             var client = new RestClient("https://api.nordeaopenbanking.com/v3/accounts/"+accountId);
             client.FollowRedirects = false;
@@ -127,8 +135,10 @@ namespace DtuNetbank.Models
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
             request.AddHeader("Authorization", "Bearer "+accessToken);
             IRestResponse response = client.Execute(request);
-            var json = JsonConvert.SerializeObject(response.Content);
-            return json;
+     
+            var account = JsonConvert.DeserializeObject<BankAccountJsonModel>(response.Content);
+
+            return account;
         }
 
 

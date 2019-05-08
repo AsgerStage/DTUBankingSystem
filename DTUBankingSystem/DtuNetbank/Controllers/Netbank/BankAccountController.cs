@@ -23,7 +23,7 @@ namespace DtuNetbank.Controllers.Netbank
             var accounts = accountJsonModels.Select(a => new BankAccount()
             {
                 AccountName = a.account_name,
-                IBAN = a._id,
+                Account_id = a._id,
                 AccountNumber = a.account_numbers.Single(i => i._type == "BBAN_DK").value,
                 User = user,
                 Balance = decimal.Parse(a.available_balance)
@@ -31,6 +31,7 @@ namespace DtuNetbank.Controllers.Netbank
             return View("Accounts", accounts);
         }
         
+    
         //// GET: BankAccount
         //public ActionResult Index(AccountMessageId? Message)
         //{
@@ -38,7 +39,7 @@ namespace DtuNetbank.Controllers.Netbank
         //    //var accountJsonModels = GetAccountsFromApi();            
         //    //var accounts = accountJsonModels.Select(a => new BankAccount()
         //    //{
-        //    //    AccountName = a.account_name, IBAN = a._id,
+        //    //    AccountName = a.account_name, Account_id = a._id,
         //    //    AccountNumber = a.account_numbers.Single(i => i._type == "BBAN_DK").value, User = user,
         //    //    Balance = decimal.Parse(a.available_balance)
         //    //}).ToList();
@@ -64,12 +65,12 @@ namespace DtuNetbank.Controllers.Netbank
                 if(accounts.Count() > 0)
                     responseMsg = AccountMessageId.AccountAlreadyAdded;
                 else{
-                    var accountJsonModels = GetAccountsFromApi(new string[]{});
+                    var accountJsonModels = GetAccountsFromApi(new string[] { });
                     var accountsFromNordea = accountJsonModels.
                                             Where(a => a._id.ToString() == accountId).
                                             Select(a => new BankAccount()
                                             {
-                                                AccountName = a.account_name, IBAN = a._id,
+                                                AccountName = a.account_name, Account_id = a._id,
                                                 AccountNumber = a.account_numbers.Single(i => i._type == "BBAN_DK").value,
                                                 User = GetCurrentUser(), Balance = decimal.Parse(a.available_balance),
                                             }).
@@ -110,7 +111,7 @@ namespace DtuNetbank.Controllers.Netbank
 
         private bool AddBankAccount(BankAccount model)
         {
-            if (string.IsNullOrWhiteSpace(model.IBAN)) return false;
+            if (string.IsNullOrWhiteSpace(model.Account_id)) return false;
             using (var db = new ApplicationDbContext())
             {
                 db.BankAccounts.Add(model);
@@ -127,18 +128,17 @@ namespace DtuNetbank.Controllers.Netbank
                 throw new Exception("User is not identified");
             using (var db = new ApplicationDbContext())
             {
-                var accounts = db.BankAccounts.Where(a => a.User.Id.ToString() == userid).ToArray();
-                GetAccountInfoFromApi(accounts);
+                var accounts = db.BankAccounts.Where(a => a.UserId.ToString() == userid).ToArray();
                 return accounts;
             }
         }
 
         private void GetAccountInfoFromApi(ICollection<BankAccount> accounts)
         {
-            var accountsFromApi = GetAccountsFromApi(accounts.Select(a => a.IBAN));
+            var accountsFromApi = GetAccountsFromApi(accounts.Select(a => a.Account_id));
             foreach (var bankAccount in accounts)
             {
-                var apiAccount = accountsFromApi.SingleOrDefault(a => a._id == bankAccount.IBAN);
+                var apiAccount = accountsFromApi.SingleOrDefault(a => a._id == bankAccount.Account_id);
                 if (apiAccount != null)
                 {
                     bankAccount.AccountName = apiAccount.account_name;
@@ -151,8 +151,19 @@ namespace DtuNetbank.Controllers.Netbank
         private ICollection<BankAccountJsonModel> GetAccountsFromApi(IEnumerable<string> filterBy)
         {
             var nordeaApiManager = new NordeaAPIv3Manager();
-            var accounts = nordeaApiManager.GetAccounts();
-            accounts = accounts.Where(a => filterBy.Contains(a._id)).ToList();
+            var usersBankAccounts = GetUserAccounts();
+            List<BankAccountJsonModel> accounts = new List<BankAccountJsonModel>();
+            foreach (var BankAccount in usersBankAccounts)
+            {
+                var apiAccount = nordeaApiManager.GetAccountByAccountId(BankAccount.Account_id);
+                if (apiAccount != null)
+                {
+                    accounts.Add(apiAccount);
+                }
+                
+          
+            }
+
             return accounts;
         }
 

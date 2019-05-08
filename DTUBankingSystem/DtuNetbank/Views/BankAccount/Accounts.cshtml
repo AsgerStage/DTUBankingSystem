@@ -6,7 +6,7 @@
 @using (Html.BeginForm("AddAccount", "BankAccount", FormMethod.Get))
 {
     
-    <label>IBAN</label>
+    <label>Account_id</label>
     <input type="text" name="accountId"/>
     <input type="submit" value="Add" class="btn btn-primary" />
     @ViewBag.statusMessage
@@ -24,7 +24,7 @@
             @Html.DisplayNameFor(model => model.AccountName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IBAN)
+            @Html.DisplayNameFor(model => model.Account_id)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Balance)
@@ -42,12 +42,12 @@
             @Html.DisplayFor(modelItem => item.AccountName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IBAN)
+            @Html.DisplayFor(modelItem => item.Account_id)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Balance)
         </td>
-        <td>@Html.ActionLink("Show Transactions", "Transactions", routeValues: new {accountId = item.IBAN})</td>
+        <td>@Html.ActionLink("Show Transactions", "Transactions", routeValues: new {accountId = item.Account_id})</td>
     </tr>
 }
 

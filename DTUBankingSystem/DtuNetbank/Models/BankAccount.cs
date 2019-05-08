@@ -16,7 +16,7 @@ namespace DtuNetbank.Models
         [Display(Name = "Konto beskrivelse")]
         public string AccountName { get; set; }
         [Display(Name = "ID")]
-        public string IBAN { get; set; }
+        public string Account_id { get; set; }
         [Display(Name = "Saldo")]
         public decimal Balance { get; set;}
 
@@ -26,7 +26,7 @@ namespace DtuNetbank.Models
     {
      
         [Required]
-        [Display(Name = "IBAN")]
+        [Display(Name = "Account_id")]
         public string IBAN { get; set; }
     }
 
