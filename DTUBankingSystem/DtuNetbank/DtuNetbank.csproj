@@ -231,6 +231,10 @@
     <Compile Include="Migrations\201905011215470_BankAccountModelUpdate.Designer.cs">
       <DependentUpon>201905011215470_BankAccountModelUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905081031085_updateIBAN.cs" />
+    <Compile Include="Migrations\201905081031085_updateIBAN.Designer.cs">
+      <DependentUpon>201905081031085_updateIBAN.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -372,6 +376,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905011215470_BankAccountModelUpdate.resx">
       <DependentUpon>201905011215470_BankAccountModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905081031085_updateIBAN.resx">
+      <DependentUpon>201905081031085_updateIBAN.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
