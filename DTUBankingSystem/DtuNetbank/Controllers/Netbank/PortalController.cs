@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using DtuNetbank.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Logging;
 
 namespace DtuNetbank.Controllers.Netbank
 {
@@ -27,13 +28,13 @@ namespace DtuNetbank.Controllers.Netbank
                 _userManager = value;
             }
         }
-
+        
         protected ApplicationUser GetCurrentUser()
         {
-            var user = UserManager.Users;
-            var oneUser = user.FirstOrDefault(i => i.Name == User.Identity.Name);
-            return oneUser;
+            var users = UserManager.Users;
+            var currentUserName = User.Identity.GetUserName();
+            var applicationUser = users.Single(user => user.UserName == currentUserName);
+            return applicationUser;
         }
-
     }
 }

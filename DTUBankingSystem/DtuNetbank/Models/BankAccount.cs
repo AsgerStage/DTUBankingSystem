@@ -8,9 +8,9 @@ namespace DtuNetbank.Models
 {
     public class BankAccount
     {
-        public Guid Id { get; set; }
-
-       public ApplicationUser User { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid UserId { get; set; }
+        public ApplicationUser User { get; set; }
         [Display(Name = "Kontonummer")]
         public string AccountNumber { get; set; }
         [Display(Name = "Konto beskrivelse")]
