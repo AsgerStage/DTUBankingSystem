@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using DtuNetbank.Models.Payment;
 using RestSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -157,6 +158,31 @@ namespace DtuNetbank.Models
             return responseJsonModel;
         }
 
+        public void InitiateTransaction(Creditor creditor , Debtor debtor, decimal amount, string currency)
+        {
+            
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            string JsonCreditor = JsonConvert.SerializeObject(creditor, settings);
+            string JsonDebtor = JsonConvert.SerializeObject(debtor, settings);
+            string strAmount = amount.ToString();
+            string bodyParams = $"{{\"amount\": {strAmount.Replace(',','.')},\"currency\": \"{currency}\"," +
+                                $"\"creditor\": {JsonCreditor},\"debtor\": {JsonDebtor}}}";
+            var client = new RestClient("https://api.nordeaopenbanking.com/v3/payments/domestic");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("postman-token", "e7c673c0-caa0-8d4d-67bb-6c1e2bad70bb");
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            request.AddHeader("x-ibm-client-secret", ClientSecret);
+            request.AddHeader("x-ibm-client-id", ClientId);
+            request.AddHeader("authorization", $"Bearer {AccessToken}");
+            request.AddParameter("application/json", bodyParams, ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+
+        }
+
 
     }
+
+
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using DtuNetbank.Models;
+using DtuNetbank.Models.Payment;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DtuNetbank.Tests.Models
@@ -29,6 +30,35 @@ namespace DtuNetbank.Tests.Models
             string token2 = nordeaApiManager.AccessToken;
             Assert.IsFalse(string.IsNullOrWhiteSpace(token2));
             Assert.AreEqual(token1, token2);
+        }
+
+        [TestMethod]
+        public void InitiatePayments()
+        {
+            Creditor creditor = new Creditor(){account = new Account()
+            {
+                _type = "BBAN_DK",
+                currency = "DKK",
+                value = "20301544117544"
+            },
+                message = "test1",
+                name = "name",
+                
+            };
+            Debtor debtor = new Debtor()
+            {
+                account = new Account()
+                {
+                    _type = "BBAN_DK",
+                    currency = "DKK",
+                    value = "20301544118028"
+                }
+            };
+            decimal amount = 22.22M;
+            string currency = "DKK";
+            NordeaAPIv3Manager man = new NordeaAPIv3Manager();
+            man.InitiateTransaction(creditor, debtor, amount, currency);
+            Assert.IsTrue(true);
         }
     }
 }
