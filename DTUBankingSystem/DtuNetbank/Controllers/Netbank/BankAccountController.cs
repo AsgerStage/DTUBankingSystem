@@ -142,7 +142,7 @@ namespace DtuNetbank.Controllers.Netbank
                 if (apiAccount != null)
                 {
                     bankAccount.AccountName = apiAccount.account_name;
-                    bankAccount.AccountNumber = apiAccount.ac
+                    bankAccount.AccountNumber = apiAccount.account_numbers.First().value;
                 }
             }
         }
