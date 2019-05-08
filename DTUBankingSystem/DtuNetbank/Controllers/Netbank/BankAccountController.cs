@@ -15,11 +15,11 @@ namespace DtuNetbank.Controllers.Netbank
         // GET: BankAccount
         public ActionResult Index(AccountMessageId? Message)
         {
-            //var user = GetCurrentUser();
+            var user = GetCurrentUser();
             var userBankAccounts = GetUserAccounts();
 
 
-            var accountJsonModels = GetAccountsFromApi();
+            var accountJsonModels = GetAccountsFromApi(new string[] { });
             var accounts = accountJsonModels.Select(a => new BankAccount()
             {
                 AccountName = a.account_name,
@@ -64,7 +64,7 @@ namespace DtuNetbank.Controllers.Netbank
                 if(accounts.Count() > 0)
                     responseMsg = AccountMessageId.AccountAlreadyAdded;
                 else{
-                    var accountJsonModels = GetAccountsFromApi();
+                    var accountJsonModels = GetAccountsFromApi(new string[]{});
                     var accountsFromNordea = accountJsonModels.
                                             Where(a => a._id.ToString() == accountId).
                                             Select(a => new BankAccount()
