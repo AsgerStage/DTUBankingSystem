@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using DtuNetbank.Models.Payment;
+using DtuNetbank.Models.Payments;
 using RestSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -167,8 +167,59 @@ namespace DtuNetbank.Models
 
             return responseJsonModel;
         }
+        public ICollection<Payment> GetPayments()
+        {
+            var client = new RestClient("https://api.nordeaopenbanking.com/v3/payments/domestic");
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("postman-token", "e7c673c0-caa0-8d4d-67bb-6c1e2bad70bb");
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("x-ibm-client-secret", ClientSecret);
+            request.AddHeader("x-ibm-client-id", ClientId);
+            request.AddHeader("authorization", $"Bearer {AccessToken}");
+            IRestResponse serverResponse = client.Execute(request);
 
-        public void InitiateTransaction(Creditor creditor , Debtor debtor, decimal amount, string currency)
+            var response = JObject.Parse(serverResponse.Content)["response"].
+                AsJEnumerable().
+                First().
+                First().
+                Select(j => JsonConvert.DeserializeObject<Payment>(j.ToString())).
+                ToList();
+            return response;
+        }
+        public Payment GetPayment(string paymentId)
+        {
+            var client = new RestClient($"https://api.nordeaopenbanking.com/v3/payments/domestic/{paymentId}");
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("postman-token", "e7c673c0-caa0-8d4d-67bb-6c1e2bad70bb");
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("x-ibm-client-secret", ClientSecret);
+            request.AddHeader("x-ibm-client-id", ClientId);
+            request.AddHeader("authorization", $"Bearer {AccessToken}");
+            IRestResponse serverResponse = client.Execute(request);
+
+            var response = JObject.Parse(serverResponse.Content)["response"].ToString();
+            var responseJsonModel = JsonConvert.DeserializeObject<Payment>(response);
+            return responseJsonModel;
+        }
+
+        public Payment ConfirmPayment(string paymentId)
+        {
+            var client = new RestClient($"https://api.nordeaopenbanking.com/v3/payments/domestic/{paymentId}/confirm");
+            var request = new RestRequest(Method.PUT);
+            request.AddHeader("postman-token", "e7c673c0-caa0-8d4d-67bb-6c1e2bad70bb");
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("content-type", "application/json");
+            request.AddHeader("x-ibm-client-secret", ClientSecret);
+            request.AddHeader("x-ibm-client-id", ClientId);
+            request.AddHeader("authorization", $"Bearer {AccessToken}");
+            IRestResponse serverResponse = client.Execute(request);
+
+            var response = JObject.Parse(serverResponse.Content)["response"]?.ToString();
+            var responseJsonModel = JsonConvert.DeserializeObject<Payment>(response);
+            return responseJsonModel;
+        }
+        
+        public Payment InitiatePayment(Creditor creditor , Debtor debtor, decimal amount, string currency)
         {
             
             JsonSerializerSettings settings = new JsonSerializerSettings();
@@ -187,8 +238,10 @@ namespace DtuNetbank.Models
             request.AddHeader("x-ibm-client-id", ClientId);
             request.AddHeader("authorization", $"Bearer {AccessToken}");
             request.AddParameter("application/json", bodyParams, ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);
-
+            IRestResponse serverResponse = client.Execute(request);
+            var response = JObject.Parse(serverResponse.Content)["response"].ToString();
+            var responseJsonModel = JsonConvert.DeserializeObject<Payment>(response);
+            return responseJsonModel;
         }
 
 
