@@ -47,31 +47,44 @@ namespace DtuNetbank.Models.Payments
 
     }
     public class Debtor
-    { 
-        public Account   account   { get; set; }
-        public string    message   { get; set; }
+    {
+        [JsonProperty(PropertyName = "account")]
+        public Account   Account   { get; set; }
+        [JsonProperty(PropertyName = "message")]
+        public string    Message   { get; set; }
     }
 
     public class Creditor
-    {     
-        public Account   account   { get; set; }
+    {
+        [JsonProperty(PropertyName = "account")]
+        public Account   Account   { get; set; }
+        [JsonProperty(PropertyName = "reference")]
         public Reference reference { get; set; }
-        public string    name      { get; set; }
-        public string    message   { get; set; }
+        [JsonProperty(PropertyName = "name")]
+        public string    Name      { get; set; }
+        [JsonProperty(PropertyName = "message")]
+        public string    Message   { get; set; }
          
     }
 
     public class Reference
     {
-        public string    _type     { get; set; }
-        public string    value     { get; set; }
+        [JsonProperty(PropertyName = "_type")]
+        public string    Type     { get; set; }
+        [JsonProperty(PropertyName = "value")]
+
+        public string    Value     { get; set; }
     }
 
     public class Account
     {
-        public string    value     { get; set; }
-        public string    _type     { get; set; }
-        public string    currency  { get; set; }
+        [Display(Name = "Konton")]
+        [JsonProperty(PropertyName = "value")]
+        public string    Value     { get; set; }
+        [JsonProperty(PropertyName = "_type")]
+        public string    Type     { get; set; }
+        [JsonProperty(PropertyName = "currency")]
+        public string    Currency  { get; set; }
     }
 
 

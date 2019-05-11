@@ -123,10 +123,11 @@ namespace DtuNetbank.Controllers.Netbank
         public ActionResult Payment()
         {
             var user = GetCurrentUser();
-            var userAccounts = GetUserAccounts(user.Id);
+            var accounts = GetAccountsFromApi();
+
             var viewModel = new PaymentViewModel() {
                 PaymentModel = new Payment(),
-                AccountSelectorItems = CreateAccountSelectorItems(userAccounts),
+                AccountSelectorItems = CreateAccountSelectorItems(accounts),
             };
             return View(viewModel);
         }
@@ -135,11 +136,11 @@ namespace DtuNetbank.Controllers.Netbank
         public ActionResult Payment(Payment model)
         {
             var user = GetCurrentUser();
-            var userAccounts = GetUserAccounts(user.Id);
+            var accounts = GetAccountsFromApi();
             var viewModel = new PaymentViewModel()
             {
                 PaymentModel = new Payment(),
-                AccountSelectorItems = CreateAccountSelectorItems(userAccounts),
+                AccountSelectorItems = CreateAccountSelectorItems(accounts),
             };
             return PaymentStatus(model.Id);
         }
@@ -149,12 +150,13 @@ namespace DtuNetbank.Controllers.Netbank
             return View();
         }
 
-        private ICollection<SelectListItem> CreateAccountSelectorItems(IEnumerable<BankAccount> userAccounts)
+        private ICollection<SelectListItem> CreateAccountSelectorItems(ICollection<BankAccountJsonModel> accounts)
         {
             var list = new List<SelectListItem>();
-            foreach(var account in userAccounts)
+            foreach(var account in accounts)
             {
-                list.Add(new SelectListItem { Text = $"{account.AccountNumber} {account.AccountName}" , Value = account.AccountNumber});
+                var accountNumber = account.account_numbers.First().value;
+                list.Add(new SelectListItem { Text = $"{accountNumber} {account.account_name}" , Value = accountNumber});
             }
             return list;
         }
