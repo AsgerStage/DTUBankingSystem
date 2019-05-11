@@ -351,6 +351,7 @@
     <Content Include="Views\BankAccount\Transactions.cshtml" />
     <Content Include="Views\BankAccount\Register.cshtml" />
     <Content Include="Views\BankAccount\Index.cshtml" />
+    <Content Include="Views\BankAccount\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

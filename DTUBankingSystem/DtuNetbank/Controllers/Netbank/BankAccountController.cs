@@ -4,6 +4,8 @@ using System.Data;
 using System.Linq;
 using System.Web.Mvc;
 using DtuNetbank.Models;
+using DtuNetbank.Models.Payments;
+
 namespace DtuNetbank.Controllers.Netbank
 {
     public class BankAccountController : PortalController
@@ -116,5 +118,46 @@ namespace DtuNetbank.Controllers.Netbank
             var userBankAccounts = GetUserAccounts(userId);
             return userBankAccounts.Select(a => a.Account_id).Contains(accountId);
         }
+
+
+        public ActionResult Payment()
+        {
+            var user = GetCurrentUser();
+            var userAccounts = GetUserAccounts(user.Id);
+            var viewModel = new PaymentViewModel() {
+                PaymentModel = new Payment(),
+                AccountSelectorItems = CreateAccountSelectorItems(userAccounts),
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Payment(Payment model)
+        {
+            var user = GetCurrentUser();
+            var userAccounts = GetUserAccounts(user.Id);
+            var viewModel = new PaymentViewModel()
+            {
+                PaymentModel = new Payment(),
+                AccountSelectorItems = CreateAccountSelectorItems(userAccounts),
+            };
+            return PaymentStatus(model.Id);
+        }
+
+        public ActionResult PaymentStatus(string id)
+        {
+            return View();
+        }
+
+        private ICollection<SelectListItem> CreateAccountSelectorItems(IEnumerable<BankAccount> userAccounts)
+        {
+            var list = new List<SelectListItem>();
+            foreach(var account in userAccounts)
+            {
+                list.Add(new SelectListItem { Text = $"{account.AccountNumber} {account.AccountName}" , Value = account.AccountNumber});
+            }
+            return list;
+        }
+
     }
 }

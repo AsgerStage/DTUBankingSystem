@@ -3,10 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Newtonsoft.Json;
 
 namespace DtuNetbank.Models.Payments
 {
+    public class PaymentViewModel
+    {
+        public IEnumerable<BankAccount> UserAccounts { get; internal set; }
+        public Payment PaymentModel { get; internal set; }
+        public ICollection<SelectListItem> AccountSelectorItems { get; internal set; }
+    }
+
+
+
     public class Payment
     {
         [JsonProperty(PropertyName = "entry_date_time")]
