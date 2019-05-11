@@ -102,10 +102,10 @@ namespace DtuNetbank.Controllers.Netbank
             var apiManager = new NordeaAPIv3Manager();
             var apiResponse = apiManager.GetTransactions(accountId, trxStartDate, trxEndDate, continuationKey, apiManager.AccessToken);
             
-            var model = new TransactionViewModel(accountId, apiResponse.transactions, user) {
+            var model = new TransactionViewModel(accountId, apiResponse.Transactions, user) {
                 StartDate = trxStartDate,
                 EndDate = trxEndDate,
-                ContinuationKey = apiResponse.continuation_key};
+                ContinuationKey = apiResponse.ContinuationKey};
             return View(model);
         }
 
@@ -155,8 +155,8 @@ namespace DtuNetbank.Controllers.Netbank
             var list = new List<SelectListItem>();
             foreach(var account in accounts)
             {
-                var accountNumber = account.account_numbers.First().value;
-                list.Add(new SelectListItem { Text = $"{accountNumber} {account.account_name}" , Value = accountNumber});
+                var accountNumber = account.AccountNumbers.First().Value;
+                list.Add(new SelectListItem { Text = $"{accountNumber} {account.AccountName}" , Value = accountNumber});
             }
             return list;
         }

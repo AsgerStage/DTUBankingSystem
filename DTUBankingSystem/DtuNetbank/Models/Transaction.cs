@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
+using Newtonsoft.Json;
 
 namespace DtuNetbank.Models
 {
@@ -57,33 +57,84 @@ namespace DtuNetbank.Models
 
     public class TransactionResponseJsonModel
     {
-        public string continuation_key { get; set; }
-        public ICollection<TransactionJsonModel> transactions { get; set; }
-        public ICollection<Link> _links { get; set; }
+        [Display(Name = "Continuation Key")]
+        [JsonProperty("continuation_key")]
+        public string ContinuationKey { get; set; }
+
+        [Display(Name = "Transactions")]
+        [JsonProperty("transactions")]
+        public ICollection<TransactionJsonModel> Transactions { get; set; }
+
+        [Display(Name = "Links")]
+        [JsonProperty("_links")]
+        public ICollection<Link> Links { get; set; }
     }
 
     public class TransactionJsonModel
     {
-        public string _type { get; set; }
-        public string transaction_id { get; set; }
-        public string currency { get; set; }
-        public string booking_date { get; set; }
-        public string value_date { get; set; }
-        public string type_description { get; set; }
-        public string narrative { get; set; }
-        public string message { get; set; }
-        public string status { get; set; }
-        public string reference { get; set; }
-        public string own_message { get; set; }
-        public string counterparty_name { get; set; }
-        public string transaction_date { get; set; }
-        public string card_number { get; set; }
-        public string payment_date { get; set; }
-        public string amount { get; set; }
+        [Display(Name = "Type")]
+        [JsonProperty("_type")]
+        public string Type { get; set; }
 
-}
+        [Display(Name = "Transaction ID")]
+        [JsonProperty("transaction_id")]
+        public string TransactionId { get; set; }
 
+        [Display(Name = "Currency")]
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
 
+        [Display(Name = "Booking Date")]
+        [JsonProperty("booking_date")]
+        public string BookingDate { get; set; }
 
+        [Display(Name = "Value Date")]
+        [JsonProperty("value_date")]
+        public string ValueDate { get; set; }
 
+        [Display(Name = "Type Description")]
+        [JsonProperty("type_description")]
+        public string TypeDescription { get; set; }
+
+        [Display(Name = "Narrative")]
+        [JsonProperty("narrative")]
+        public string Narrative { get; set; }
+
+        [Display(Name = "Message")]
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
+        [Display(Name = "Status")]
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
+        [Display(Name = "Reference")]
+        [JsonProperty("reference")]
+        public string Reference { get; set; }
+
+        [Display(Name = "Own Message")]
+        [JsonProperty("own_message")]
+        public string OwnMessage { get; set; }
+
+        [Display(Name = "Counterparty Name")]
+        [JsonProperty("counterparty_name")]
+        public string CounterpartyName { get; set; }
+
+        [Display(Name = "Transaction Date")]
+        [JsonProperty("transaction_date")]
+        public string TransactionDate { get; set; }
+
+        [Display(Name = "Card Number")]
+        [JsonProperty("card_number")]
+        public string CardNumber { get; set; }
+
+        [Display(Name = "Payment Date")]
+        [JsonProperty("payment_date")]
+        public string PaymentDate { get; set; }
+
+        [Display(Name = "Amount")]
+        [JsonProperty("amount")]
+        public string Amount { get; set; }
+
+    }
 }

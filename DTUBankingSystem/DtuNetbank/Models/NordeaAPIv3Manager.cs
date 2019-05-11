@@ -97,7 +97,7 @@ namespace DtuNetbank.Models
         {
             var token = AccessToken;
             var account = GetAccountDetailByAccountId(id,token);
-            if (account == null ||account._id == null) return null;
+            if (account == null ||account.Id == null) return null;
             return account;
         }
         public ICollection<BankAccountJsonModel> GetAccounts(string accessToken)
@@ -152,7 +152,7 @@ namespace DtuNetbank.Models
         internal ICollection<TransactionJsonModel> GetTransactions(string accountId, DateTime minValue, DateTime maxValue, string continuationKey)
         {
             var jsonModel = GetTransactions(accountId, minValue, maxValue, continuationKey, AccessToken);
-            return jsonModel.transactions;
+            return jsonModel.Transactions;
         }
 
         public TransactionResponseJsonModel GetTransactions(string accountId, DateTime startDate, DateTime endDate, string continuationKey, string accessToken)

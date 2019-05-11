@@ -16,7 +16,7 @@ namespace DtuNetbank.Tests.Models
             var nordeaApiManager = new NordeaAPIv3Manager();
             var token = nordeaApiManager.AccessToken;
             var accounts = nordeaApiManager.GetAccounts(token);
-            var transactionResponseModel = nordeaApiManager.GetTransactions(accounts.First()._id, new DateTime(2019,1,1), new DateTime(2019,3,1),"",token);
+            var transactionResponseModel = nordeaApiManager.GetTransactions(accounts.First().Id, new DateTime(2019,1,1), new DateTime(2019,3,1),"",token);
             Assert.IsNotNull(transactionResponseModel);
         }
 
@@ -41,7 +41,7 @@ namespace DtuNetbank.Tests.Models
             var accountId = "DK20301544118028-DKK";
             var apiResponse = nordeaApiManager.GetAccountDetailByAccountId(accountId, token);
             Assert.IsNotNull(apiResponse);
-            Assert.AreEqual(accountId, apiResponse._id);
+            Assert.AreEqual(accountId, apiResponse.Id);
         }
 
 

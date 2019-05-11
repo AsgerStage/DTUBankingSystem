@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+using Newtonsoft.Json;
 
 namespace DtuNetbank.Models
 {
@@ -39,40 +38,102 @@ namespace DtuNetbank.Models
 
     public class BankAccountJsonModel
     {
-        public string country { get; set; }
-        public ICollection<AccountNumber> account_numbers { get; set; }
-        public string currency { get; set; }
-        public string account_name { get; set; }
-        public string product { get; set; }
-        public string account_type { get; set; }
-        public string available_balance { get; set; }
-        public string booked_balance { get; set; }
-        public string value_dated_balance { get; set; }
-        public Bank bank { get; set; }
-        public string status { get; set; }
-        public string credit_limit { get; set; }
-        public string latest_transaction_booking_date { get; set; }
-        public ICollection<Link> _links { get; set; }
-        public string _id { get; set; }
+        [Display(Name = "Country")]
+        [JsonProperty("country")]
+        public string Country { get; set; }
+
+        [Display(Name = "Account Numbers")]
+        [JsonProperty("account_numbers")]
+        public ICollection<AccountNumber> AccountNumbers { get; set; }
+
+        [Display(Name = "Currency")]
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
+
+        [Display(Name = "Account Name")]
+        [JsonProperty("account_name")]
+        public string AccountName { get; set; }
+
+        [Display(Name = "Product")]
+        [JsonProperty("product")]
+        public string Product { get; set; }
+
+        [Display(Name = "Account Type")]
+        [JsonProperty("account_type")]
+        public string AccountType { get; set; }
+
+        [Display(Name = "Available Balance")]
+        [JsonProperty("available_balance")]
+        public string AvailableBalance { get; set; }
+
+        [Display(Name = "Booked Balance")]
+        [JsonProperty("booked_balance")]
+        public string BookedBalance { get; set; }
+
+        [Display(Name = "Value Dated Balance")]
+        [JsonProperty("value_dated_balance")]
+        public string ValueDatedBalance { get; set; }
+
+        [Display(Name = "Bank")]
+        [JsonProperty("bank")]
+        public Bank Bank { get; set; }
+
+        [Display(Name = "Status")]
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
+        [Display(Name = "Credit Limit")]
+        [JsonProperty("credit_limit")]
+        public string CreditLimit { get; set; }
+
+        [Display(Name = "Latest Transaction Booking Date")]
+        [JsonProperty("latest_transaction_booking_date")]
+        public string LatestTransactionBookingDate { get; set; }
+
+        [Display(Name = "Links")]
+        [JsonProperty("_links")]
+        public ICollection<Link> Links { get; set; }
+
+        [Display(Name = "ID")]
+        [JsonProperty("_id")]
+        public string Id { get; set; }
     }
 
     public class Link
     {
-        public string rel { get; set; }
-        public string href { get; set; }
+        [Display(Name = "Relative")]
+        [JsonProperty("rel")]
+        public string Relative { get; set; }
+
+        [Display(Name = "Hyper Reference")]
+        [JsonProperty("href")]
+        public string HRef { get; set; }
     }
 
     public class Bank
     {
-        public string name { get; set; }
-        public string bic { get; set; }
-        public string country { get; set; }
+        [Display(Name = "Name")]
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [Display(Name = "BIC")]
+        [JsonProperty("bic")]
+        public string BIC { get; set; }
+
+        [Display(Name = "Country")]
+        [JsonProperty("country")]
+        public string Country { get; set; }
 
     }
 
     public class AccountNumber
     {
-        public string value { get; set; }
-        public string _type { get; set; }
+        [Display(Name = "Value")]
+        [JsonProperty("value")]
+        public string Value { get; set; }
+
+        [Display(Name = "Type")]
+        [JsonProperty("_type")]
+        public string Type { get; set; }
     }
 }
