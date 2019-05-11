@@ -33,7 +33,7 @@ namespace DtuNetbank
                         validateInterval: TimeSpan.FromMinutes(10),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 },
-                ExpireTimeSpan = TimeSpan.FromMinutes(10)
+                ExpireTimeSpan = TimeSpan.FromMinutes(5)
             });            
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
