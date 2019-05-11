@@ -30,6 +30,13 @@ namespace DtuNetbank.Models
         public string IBAN { get; set; }
     }
 
+    public class BankAccountsViewModel
+    {
+        public ICollection<BankAccountJsonModel> BankAccounts { get; set; }
+        public ApplicationUser User { get; set; }
+    }
+
+
     public class BankAccountJsonModel
     {
         public string country { get; set; }

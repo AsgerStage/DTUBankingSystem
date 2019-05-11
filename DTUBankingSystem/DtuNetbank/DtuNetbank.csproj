@@ -346,9 +346,10 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Manage\ViewTransactions.cshtml" />
     <Content Include="Views\Transactions.cshtml" />
-    <Content Include="Views\BankAccount\Accounts.cshtml" />
+    <Content Include="Views\BankAccount\AccountListPartial.cshtml" />
     <Content Include="Views\BankAccount\Transactions.cshtml" />
     <Content Include="Views\BankAccount\Register.cshtml" />
+    <Content Include="Views\BankAccount\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

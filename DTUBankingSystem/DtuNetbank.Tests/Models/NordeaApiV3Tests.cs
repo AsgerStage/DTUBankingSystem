@@ -32,5 +32,29 @@ namespace DtuNetbank.Tests.Models
             Assert.AreEqual(token1, token2);
         }
 
+
+        [TestMethod]
+        public void GetAccountInformationById()
+        {
+            var nordeaApiManager = new NordeaAPIv3Manager();
+            var token = nordeaApiManager.AccessToken;
+            var accountId = "DK20301544118028-DKK";
+            var apiResponse = nordeaApiManager.GetAccountDetailByAccountId(accountId, token);
+            Assert.IsNotNull(apiResponse);
+            Assert.AreEqual(accountId, apiResponse._id);
+        }
+
+
+        [TestMethod]
+        public void GetAccountTransactioonsForAccont()
+        {
+            var nordeaApiManager = new NordeaAPIv3Manager();
+            var token = nordeaApiManager.AccessToken;
+            var accountId = "DK20301544118028-DKK";
+            var endDate = DateTime.Today.AddDays(-1);
+            var str = endDate.ToString("yyyy-MM-dd");
+            var apiResponse = nordeaApiManager.GetTransactions(accountId, endDate.AddMonths(-1), endDate, "", token );
+            Assert.IsNotNull(apiResponse);
+        }
     }
 }

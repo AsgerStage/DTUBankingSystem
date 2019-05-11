@@ -36,5 +36,6 @@ namespace DtuNetbank.Controllers.Netbank
             var applicationUser = users.Single(user => user.UserName == currentUserName);
             return applicationUser;
         }
+
     }
 }

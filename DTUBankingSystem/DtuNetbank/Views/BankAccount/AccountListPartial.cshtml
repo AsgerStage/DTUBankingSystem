@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DtuNetbank.Models.BankAccountJsonModel>
+
+<h2>Accounts</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Kontonummer
+        </th>
+        <th>
+            Konto Navn
+        </th>
+        <th>
+            Bank
+        </th>
+        <th>
+            Saldo
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.account_numbers.First().value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.account_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bank.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.available_balance)
+        </td>
+        <td>@Html.ActionLink("Show Transactions", "Transactions", routeValues: new {accountId = item._id})</td>
+    </tr>
+}
+
+</table>

@@ -48,11 +48,11 @@ namespace DtuNetbank.Models
             Transactions = transactions;
             User = user;
         }
-
-        //public DateTime PeriodStartDate => Transactions.Min(t => t.TransactionDate);
-        //public DateTime PeriodEndDate => Transactions.Max(t => t.TransactionDate);
+        public string ContinuationKey { get; set; }
         public IEnumerable<TransactionJsonModel> Transactions { get; }
         public string AccountNumber { get; set; }
+        public DateTime StartDate { get; internal set; }
+        public DateTime EndDate { get; internal set; }
     }
 
     public class TransactionResponseJsonModel

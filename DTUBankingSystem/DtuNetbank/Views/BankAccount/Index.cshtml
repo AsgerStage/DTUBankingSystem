@@ -1,0 +1,9 @@
+﻿@model DtuNetbank.Models.BankAccountsViewModel
+
+@{
+    ViewBag.Title = "Konti Oversigt";
+}
+
+<h2>Konti Oversigt</h2>
+
+@Html.Partial("AccountListPartial", Model.BankAccounts)

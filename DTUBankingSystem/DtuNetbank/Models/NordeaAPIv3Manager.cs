@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Configuration;
 using System.Threading;
 using DtuNetbank.Models.Payments;
 using RestSharp;
@@ -13,8 +14,10 @@ namespace DtuNetbank.Models
     {
         private static Mutex mut = new Mutex();
         private static long expirationTimestamp = 0;
-        private const string ClientId = "9dce38b7-30e9-49c9-b8a3-6f10b9c9367c";
-        private const string ClientSecret = "U5tL8iY2hP3jM5rX7wV7aF0mX8rE6wG1hP7qG7gX0lT5uQ4jN5";
+        //private const string ClientId = "9dce38b7-30e9-49c9-b8a3-6f10b9c9367c";
+        //private const string ClientSecret = "U5tL8iY2hP3jM5rX7wV7aF0mX8rE6wG1hP7qG7gX0lT5uQ4jN5";
+        private static string ClientId = ConfigurationManager.AppSettings.Get("clientId");
+        private static string ClientSecret = ConfigurationManager.AppSettings.Get("clientSecret");
         private string _accesstoken;
         public string AccessToken
         {
@@ -137,36 +140,54 @@ namespace DtuNetbank.Models
             request.AddHeader("Authorization", "Bearer "+accessToken);
             IRestResponse response = client.Execute(request);
      
-            var account = JsonConvert.DeserializeObject<BankAccountJsonModel>(response.Content);
 
+            var jsonObjects = JObject.Parse(response.Content);
+            var respons = JObject.Parse(jsonObjects["response"].ToString());
+            var account = JsonConvert.DeserializeObject<BankAccountJsonModel>(respons.ToString());
             return account;
         }
 
 
-        internal ICollection<TransactionJsonModel> GetTransactions(string accountId, DateTime minValue, DateTime maxValue)
+        internal ICollection<TransactionJsonModel> GetTransactions(string accountId, DateTime minValue, DateTime maxValue, string continuationKey)
         {
-            var jsonModel = GetTransactions(accountId, minValue, maxValue, "", AccessToken);
+            var jsonModel = GetTransactions(accountId, minValue, maxValue, continuationKey, AccessToken);
             return jsonModel.transactions;
         }
 
-
         public TransactionResponseJsonModel GetTransactions(string accountId, DateTime startDate, DateTime endDate, string continuationKey, string accessToken)
         {
-            var client = new RestClient("https://api.nordeaopenbanking.com/v3/accounts/"+accountId+"/transactions?continuationKey="+ continuationKey + "&language=DK&fromDate="+startDate.ToString("yyyy-MM-dd")+"&toDate="+endDate.ToString("yyyy-MM-dd"));
-            client.FollowRedirects = false;
+            var maxDateValue = DateTime.Today.AddDays(-1);
+            if (endDate > maxDateValue)
+            {
+                endDate = maxDateValue;
+            }
+            if (startDate > endDate){
+                startDate = endDate;
+            }
+            var client = new RestClient("https://api.nordeaopenbanking.com/v3/accounts/"+accountId+"/transactions?continuationKey="+continuationKey+"&language=DK&fromDate="+startDate.ToString("yyyy-MM-dd")+"&toDate="+endDate.ToString("yyyy-MM-dd"));
             var request = new RestRequest(Method.GET);
-            request.AddHeader("Postman-Token", "ecef226f-a11e-4321-93b7-ee02c4d970f1");
             request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("Connection", "keep-alive");
+            request.AddHeader("accept-encoding", "gzip, deflate");
+            request.AddHeader("cookie", "JSESSIONID=node0imsonhvqz850124lqg8ux5iw3639.node0");
+            request.AddHeader("Host", "api.nordeaopenbanking.com");
+            request.AddHeader("Postman-Token", "a44cc83e-4f4c-4411-9662-509a6a994857,363c7ce9-675c-421a-a896-535571bded9d");
+            request.AddHeader("Cache-Control", "no-cache");
+            request.AddHeader("Accept", "*/*");
+            request.AddHeader("User-Agent", "PostmanRuntime/7.11.0");
             request.AddHeader("X-IBM-Client-Secret", ClientSecret);
             request.AddHeader("X-IBM-Client-ID", ClientId);
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            request.AddHeader("Authorization", "Bearer "+accessToken);
+            request.AddHeader("Authorization", "Bearer " +accessToken);
             IRestResponse serverResponse = client.Execute(request);
+
             var response = JObject.Parse(serverResponse.Content)["response"].ToString();
             var responseJsonModel = JsonConvert.DeserializeObject<TransactionResponseJsonModel>(response);
 
             return responseJsonModel;
         }
+
+
         public ICollection<Payment> GetPayments()
         {
             var client = new RestClient("https://api.nordeaopenbanking.com/v3/payments/domestic");
