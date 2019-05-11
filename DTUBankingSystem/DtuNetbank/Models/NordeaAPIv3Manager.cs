@@ -97,7 +97,7 @@ namespace DtuNetbank.Models
         {
             var token = AccessToken;
             var account = GetAccountDetailByAccountId(id,token);
-            if (account._id == null) return null;
+            if (account == null ||account._id == null) return null;
             return account;
         }
         public ICollection<BankAccountJsonModel> GetAccounts(string accessToken)
@@ -135,12 +135,17 @@ namespace DtuNetbank.Models
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
             request.AddHeader("Authorization", "Bearer "+accessToken);
             IRestResponse response = client.Execute(request);
-     
+            if (response.IsSuccessful)
+            {
+                var jsonObjects = JObject.Parse(response.Content);
+                var respons = JObject.Parse(jsonObjects["response"].ToString());
+                var account = JsonConvert.DeserializeObject<BankAccountJsonModel>(respons.ToString());
+                return account;
+            }
+            return null;
 
-            var jsonObjects = JObject.Parse(response.Content);
-            var respons = JObject.Parse(jsonObjects["response"].ToString());
-            var account = JsonConvert.DeserializeObject<BankAccountJsonModel>(respons.ToString());
-            return account;
+
+
         }
 
 
@@ -176,11 +181,16 @@ namespace DtuNetbank.Models
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
             request.AddHeader("Authorization", "Bearer " +accessToken);
             IRestResponse serverResponse = client.Execute(request);
+            if (serverResponse.IsSuccessful)
+            {
+                var response = JObject.Parse(serverResponse.Content)["response"].ToString();
+                var responseJsonModel = JsonConvert.DeserializeObject<TransactionResponseJsonModel>(response);
 
-            var response = JObject.Parse(serverResponse.Content)["response"].ToString();
-            var responseJsonModel = JsonConvert.DeserializeObject<TransactionResponseJsonModel>(response);
+                return responseJsonModel;
+            }
+            return null;
 
-            return responseJsonModel;
+
         }
 
 
@@ -194,14 +204,19 @@ namespace DtuNetbank.Models
             request.AddHeader("x-ibm-client-id", ClientId);
             request.AddHeader("authorization", $"Bearer {AccessToken}");
             IRestResponse serverResponse = client.Execute(request);
+            if (serverResponse.IsSuccessful)
+            {
+                var response = JObject.Parse(serverResponse.Content)["response"].
+                    AsJEnumerable().
+                    First().
+                    First().
+                    Select(j => JsonConvert.DeserializeObject<Payment>(j.ToString())).
+                    ToList();
+                return response;
+            }
 
-            var response = JObject.Parse(serverResponse.Content)["response"].
-                AsJEnumerable().
-                First().
-                First().
-                Select(j => JsonConvert.DeserializeObject<Payment>(j.ToString())).
-                ToList();
-            return response;
+            return null;
+
         }
         public Payment GetPayment(string paymentId)
         {
@@ -213,10 +228,14 @@ namespace DtuNetbank.Models
             request.AddHeader("x-ibm-client-id", ClientId);
             request.AddHeader("authorization", $"Bearer {AccessToken}");
             IRestResponse serverResponse = client.Execute(request);
+            if (serverResponse.IsSuccessful)
+            {
+                var response = JObject.Parse(serverResponse.Content)["response"].ToString();
+                var responseJsonModel = JsonConvert.DeserializeObject<Payment>(response);
+                return responseJsonModel;
+            }
+            return null;
 
-            var response = JObject.Parse(serverResponse.Content)["response"].ToString();
-            var responseJsonModel = JsonConvert.DeserializeObject<Payment>(response);
-            return responseJsonModel;
         }
 
         public Payment ConfirmPayment(string paymentId)
@@ -230,10 +249,14 @@ namespace DtuNetbank.Models
             request.AddHeader("x-ibm-client-id", ClientId);
             request.AddHeader("authorization", $"Bearer {AccessToken}");
             IRestResponse serverResponse = client.Execute(request);
+            if (serverResponse.IsSuccessful)
+            {
+                var response = JObject.Parse(serverResponse.Content)["response"]?.ToString();
+                var responseJsonModel = JsonConvert.DeserializeObject<Payment>(response);
+                return responseJsonModel;
+            }
+            return null;
 
-            var response = JObject.Parse(serverResponse.Content)["response"]?.ToString();
-            var responseJsonModel = JsonConvert.DeserializeObject<Payment>(response);
-            return responseJsonModel;
         }
         
         public Payment InitiatePayment(Creditor creditor , Debtor debtor, decimal amount, string currency)
@@ -256,9 +279,16 @@ namespace DtuNetbank.Models
             request.AddHeader("authorization", $"Bearer {AccessToken}");
             request.AddParameter("application/json", bodyParams, ParameterType.RequestBody);
             IRestResponse serverResponse = client.Execute(request);
-            var response = JObject.Parse(serverResponse.Content)["response"].ToString();
-            var responseJsonModel = JsonConvert.DeserializeObject<Payment>(response);
-            return responseJsonModel;
+            if (serverResponse.IsSuccessful)
+            {
+                var response = JObject.Parse(serverResponse.Content)["response"].ToString();
+                var responseJsonModel = JsonConvert.DeserializeObject<Payment>(response);
+                return responseJsonModel;
+            }
+
+            return null;
+
+
         }
 
 

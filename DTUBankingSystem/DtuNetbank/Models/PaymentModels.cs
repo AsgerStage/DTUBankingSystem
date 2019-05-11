@@ -1,21 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace DtuNetbank.Models.Payments
 {
     public class Payment
     {
-        public DateTime entry_date_time { get; set; }
-        public ICollection<Link> _links { get; set; }
-        public string   payment_status  { get; set; }
+        [JsonProperty(PropertyName = "entry_date_time")]
+        public DateTime EntryDateTime { get; set; }
 
-        public string    _id       { get; set; }
-        public Debtor    debtor    { get; set; }
-        public Creditor  creditor  { get; set; }
-        public decimal   amount    { get; set; }
-        public string    currency  { get; set; }
+        [JsonProperty(PropertyName = "_links")]
+        public ICollection<Link> Links { get; set; }
+
+        [JsonProperty(PropertyName = "payment_status")]
+        public string PaymentStatus { get; set; }
+
+        [JsonProperty(PropertyName = "_id")]
+        public string Id { get; set; }
+
+        [JsonProperty(PropertyName = "debtor")]
+        public Debtor    Debtor    { get; set; }
+
+        [JsonProperty(PropertyName = "creditor")]
+        public Creditor  Creditor  { get; set; }
+
+        [JsonProperty(PropertyName = "amount")]
+        public decimal   Amount    { get; set; }
+
+        [JsonProperty(PropertyName = "currency")]
+        public string Currency  { get; set; }
 
         
 
