@@ -56,5 +56,27 @@ namespace DtuNetbank.Tests.Models
             var apiResponse = nordeaApiManager.GetTransactions(accountId, endDate.AddMonths(-1), endDate, "", token );
             Assert.IsNotNull(apiResponse);
         }
+
+        [TestMethod]
+        public void GetPayments()
+        {
+            var nordeaApiManager = new NordeaAPIv3Manager();
+            var payments = nordeaApiManager.GetPayments();
+            Assert.IsNotNull(payments);
+        }
+        [TestMethod]
+        public void GetSpecificPayment()
+        {
+            var nordeaApiManager = new NordeaAPIv3Manager();
+            var payments = nordeaApiManager.GetPayments();
+            if (payments.Count > 0)
+            {
+                var payment = payments.ElementAt(0);
+                var id = payment._id;
+                var _payment = nordeaApiManager.GetPayment(id);
+                Assert.AreEqual(payment , _payment);
+                
+            }
+        }
     }
 }
