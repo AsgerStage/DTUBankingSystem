@@ -8,39 +8,35 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-<nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
-    <div class="container">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        @Html.ActionLink("My Web Portal", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        <div class="navbar-collapse collapse" id="navbarSupportedContent">
-            @if (Request.IsAuthenticated)
-            {
-            <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item">@Html.ActionLink("Accounts", "Index", "BankAccount", null, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("Register Bank Account", "RegisterBankAccount", "BankAccount", null, new { @class = "nav-link" })</li>
-            </ul>
-            }
-            else
-            {
-                <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
-                </ul>
-            }
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+        <div class="container">
+            
+            @Html.ActionLink("DTU Netbank", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                @if (Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item">@Html.ActionLink("Accounts", "Index", "BankAccount", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Register Bank Account", "RegisterBankAccount", "BankAccount", null, new { @class = "nav-link" })</li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
+                         </ul>
+                }
 
-            @Html.Partial("_LoginPartial")
+                @Html.Partial("_LoginPartial")
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
 <div class="container body-content">
     @RenderBody()
     <hr />
     <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <p>&copy; @DateTime.Now.Year - Jimmy, Mohammad, Asger</p>
     </footer>
 </div>
 
