@@ -14,8 +14,6 @@ namespace DtuNetbank.Models
     {
         private static Mutex mut = new Mutex();
         private static long expirationTimestamp = 0;
-        //private const string ClientId = "9dce38b7-30e9-49c9-b8a3-6f10b9c9367c";
-        //private const string ClientSecret = "U5tL8iY2hP3jM5rX7wV7aF0mX8rE6wG1hP7qG7gX0lT5uQ4jN5";
         private static string ClientId = ConfigurationManager.AppSettings.Get("clientId");
         private static string ClientSecret = ConfigurationManager.AppSettings.Get("clientSecret");
         private string _accesstoken;
@@ -90,16 +88,14 @@ namespace DtuNetbank.Models
 
         public ICollection<BankAccountJsonModel> GetAccounts()
         {
-            var code = StartOauth();
-            var token = ExchangeToken(code);
+            var token = AccessToken;
             var accounts = GetAccounts(token);
             return accounts;
         }
 
-        public BankAccountJsonModel GetAccountByAccountId(String id)
+        public BankAccountJsonModel GetAccountByAccountId(string id)
         {
-            var code = StartOauth();
-            var token = ExchangeToken(code);
+            var token = AccessToken;
             var account = GetAccountDetailByAccountId(id,token);
             if (account._id == null) return null;
             return account;
