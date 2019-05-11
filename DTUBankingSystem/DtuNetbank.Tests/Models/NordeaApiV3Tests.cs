@@ -72,11 +72,28 @@ namespace DtuNetbank.Tests.Models
             if (payments.Count > 0)
             {
                 var payment = payments.ElementAt(0);
-                var id = payment._id;
+                var id = payment.Id;
                 var _payment = nordeaApiManager.GetPayment(id);
                 Assert.AreEqual(payment , _payment);
                 
             }
+        }
+
+        [TestMethod]
+        public void InitiatePayment()
+        {
+            var nordeaApiManager = new NordeaAPIv3Manager();
+            Debtor afsender = new Debtor { account = new Account { currency = "DKK", value = "20301544118028", _type = "BBAN_DK"} , message = "Test"};
+            Creditor modtager = new Creditor { account = new Account { currency = "DKK", value = "20301544117544", _type = "BBAN_DK" } , message = "Test2" };
+            var apiResult = nordeaApiManager.InitiatePayment(modtager, afsender, 10.0M, "DKK");
+            Assert.IsNotNull(apiResult);
+            var paymentId = apiResult.Id;
+            var confirmResult = nordeaApiManager.ConfirmPayment(paymentId);
+            Assert.IsNotNull(confirmResult);
+            var payments = nordeaApiManager.GetPayments();
+            var paymentIds = payments.Select(p => p.Id);
+            Assert.IsTrue(payments.Count > 0);
+            Assert.IsTrue(paymentIds.Contains(paymentId));
         }
     }
 }
