@@ -83,9 +83,9 @@ namespace DtuNetbank.Tests.Models
         public void InitiatePayment()
         {
             var nordeaApiManager = new NordeaAPIv3Manager();
-            Debtor afsender = new Debtor { Account = new Account { Currency = "DKK", Value = "20301544118028", Type = "BBAN_DK"} , Message = "Test"};
-            Creditor modtager = new Creditor { Account = new Account { Currency = "DKK", Value = "20301544117544", Type = "BBAN_DK" } , Message = "Test2" };
-            var apiResult = nordeaApiManager.InitiatePayment(modtager, afsender, 10.0M, "DKK");
+            Creditor afsender = new Creditor { Account = new Account { Currency = "DKK", Value = "20301544117544", Type = "BBAN_DK" } , Message = "Test2" };
+            Debtor modtager = new Debtor { Account = new Account { Currency = "DKK", Value = "20301544118028", Type = "BBAN_DK" }, Message = "Test" };
+            var apiResult = nordeaApiManager.InitiatePayment(afsender, modtager, 10.0M, "DKK");
             Assert.IsNotNull(apiResult);
             var paymentId = apiResult.Id;
             var confirmResult = nordeaApiManager.ConfirmPayment(paymentId);

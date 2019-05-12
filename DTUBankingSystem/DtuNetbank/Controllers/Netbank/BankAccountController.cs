@@ -90,7 +90,7 @@ namespace DtuNetbank.Controllers.Netbank
         {
             SetContextCulture();
             var user = GetCurrentUser();
-            if (!UserCanAccessAccountData(user.Id, accountId))
+            if (!UserCanAccessAccountData(accountId))
             {
                 throw new UnauthorizedAccessException();
             }
@@ -117,44 +117,59 @@ namespace DtuNetbank.Controllers.Netbank
         /// <summary>
         /// Compares the requested accountID with entries saved in database
         /// </summary>
-        protected bool UserCanAccessAccountData(string userId, string accountId)
+        protected bool UserCanAccessAccountData(string accountId)
         {
-            var userBankAccounts = GetUserAccounts(userId);
-            return userBankAccounts.Select(a => a.Account_id).Contains(accountId);
+            var userBankAccounts = GetAccountsFromApi();
+            return userBankAccounts.Any(a => a.Id == accountId || a.AccountNumbers.Any(an => an.Value == accountId));
         }
 
+
+        #region Payments
 
         public ActionResult Payment()
         {
             SetContextCulture();
-            var user = GetCurrentUser();
             var accounts = GetAccountsFromApi();
-
             var viewModel = new PaymentViewModel() {
                 PaymentModel = new Payment(),
                 AccountSelectorItems = CreateAccountSelectorItems(accounts),
+                Creditor = new Creditor { Account = new Account { Currency = "DKK", Value = "20301544117544", Type = "BBAN_DK" }, Message = "Test Own Message" },
+                Debtor = new Debtor { Account = new Account { Currency = "DKK", Value = "20301544118028", Type = "BBAN_DK" }, Message = "Test Debtor Message" },
+                Amount = 10.0M
             };
             return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult Payment(Payment model)
+        public ActionResult Payment(PaymentViewModel model)
         {
-            SetContextCulture();
-            var user = GetCurrentUser();
-            var accounts = GetAccountsFromApi();
-            var viewModel = new PaymentViewModel()
+            var creditorAccount = model.Creditor.Account.Value;
+
+            if (!UserCanAccessAccountData(creditorAccount))
             {
-                PaymentModel = new Payment(),
-                AccountSelectorItems = CreateAccountSelectorItems(accounts),
-            };
-            return PaymentStatus(model.Id);
+                throw new Exception("Not Allowed");
+            }
+            var apiManager = new NordeaAPIv3Manager();
+            var apiResult = apiManager.InitiatePayment(model.Creditor, model.Debtor, model.Amount, "DKK");
+
+            SetContextCulture();
+            return View("PaymentStatus", apiResult);
+        }
+
+        public ActionResult ConfirmPayment(string id)
+        {
+            var apiManager = new NordeaAPIv3Manager();
+            var apiResult = apiManager.ConfirmPayment(id);
+            SetContextCulture();
+            return RedirectToAction("PaymentStatus", routeValues: new { id = apiResult.Id });
         }
 
         public ActionResult PaymentStatus(string id)
         {
+            var apiManager = new NordeaAPIv3Manager();
+            var apiResult = apiManager.GetPayment(id);
             SetContextCulture();
-            return View();
+            return View(apiResult);
         }
 
         private ICollection<SelectListItem> CreateAccountSelectorItems(ICollection<BankAccountJsonModel> accounts)
@@ -163,10 +178,10 @@ namespace DtuNetbank.Controllers.Netbank
             foreach(var account in accounts)
             {
                 var accountNumber = account.AccountNumbers.First().Value;
-                list.Add(new SelectListItem { Text = $"{accountNumber} {account.AccountName}" , Value = accountNumber});
+                list.Add(new SelectListItem { Text = $"{account.AccountName} - {accountNumber}" , Value = accountNumber});
             }
             return list;
         }
-
+        #endregion
     }
 }

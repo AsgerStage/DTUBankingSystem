@@ -189,10 +189,7 @@ namespace DtuNetbank.Models
                 return responseJsonModel;
             }
             return null;
-
-
         }
-
 
         public ICollection<Payment> GetPayments()
         {

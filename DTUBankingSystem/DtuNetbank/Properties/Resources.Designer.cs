@@ -178,6 +178,15 @@ namespace DtuNetbank.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm Payment.
+        /// </summary>
+        public static string ConfirmPayment {
+            get {
+                return ResourceManager.GetString("ConfirmPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Counterparty Name.
         /// </summary>
         public static string CounterpartyName {
@@ -313,7 +322,7 @@ namespace DtuNetbank.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OwnMessage.
+        ///   Looks up a localized string similar to Own message.
         /// </summary>
         public static string OwnMessage {
             get {

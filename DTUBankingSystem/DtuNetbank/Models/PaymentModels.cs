@@ -11,8 +11,12 @@ namespace DtuNetbank.Models.Payments
         public IEnumerable<BankAccount> UserAccounts { get; internal set; }
         public Payment PaymentModel { get; internal set; }
         public ICollection<SelectListItem> AccountSelectorItems { get; internal set; }
-    }
 
+        public Creditor Creditor { get; set; }
+        public Debtor Debtor { get; set; }
+        public decimal Amount { get; set; }
+        public string Message { get; set; }
+    }
 
 
     public class Payment

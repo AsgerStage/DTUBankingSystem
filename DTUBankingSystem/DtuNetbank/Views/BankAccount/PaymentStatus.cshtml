@@ -1,0 +1,55 @@
+﻿@model DtuNetbank.Models.Payments.Payment
+
+@if (Model != null)
+{
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .column {
+            float: left;
+            padding: 15px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+            .column:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+
+    <h1>Status for @Model.Id</h1>
+    <h3>Status: @Model.PaymentStatus</h3>
+    <p><b>Entry Date:</b> @Model.EntryDateTime</p>
+    <p><b>@Html.DisplayNameFor(model => model.Amount)</b> @Model.Amount.ToString("N2") @Model.Currency</p>
+
+    <div class="row">
+        <div class="column" style="width:40%; background-color:#a3ca61;">
+            <h2>From @DtuNetbank.ResourceManager.GetResourceString("From")</h2>
+            <p><b>@Html.DisplayNameFor(model => model.Creditor.Name)</b> @Model.Creditor.Name</p>
+            <p><b>@Html.DisplayNameFor(model => model.Creditor.Account)</b> @Model.Creditor.Account.Value</p>
+            <p><b>@Html.DisplayNameFor(model => model.Creditor.Message)</b> @Model.Creditor.Message</p>
+        </div>
+        <div style="width:2%;"></div>
+        @{ var statusColor = Model.PaymentStatus == "Paid" ? "#00cc99" : "#bbb";}
+        <div class="column" style="width:40%; background-color:@statusColor;">
+            <h2>To</h2>
+            <p><b>@Html.DisplayNameFor(model => model.Creditor.Name)</b> </p>
+            <p><b>@Html.DisplayNameFor(model => model.Debtor.Account)</b> @Model.Debtor.Account.Value</p>
+            <p><b>@Html.DisplayNameFor(model => model.Debtor.Message)</b> @Model.Debtor.Message</p>
+        </div>
+    </div>
+    <br />
+    if (Model.PaymentStatus == "PendingConfirmation")
+    {
+        @Html.ActionLink(DtuNetbank.ResourceManager.GetResourceString("ConfirmPayment"), "ConfirmPayment", "BankAccount", routeValues: new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-success" })
+    }
+}

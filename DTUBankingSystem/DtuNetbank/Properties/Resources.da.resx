@@ -246,4 +246,7 @@
   <data name="Payments" xml:space="preserve">
     <value>Overførsler</value>
   </data>
+  <data name="ConfirmPayment" xml:space="preserve">
+    <value>Bekræft Overførsel</value>
+  </data>
 </root>

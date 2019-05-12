@@ -184,7 +184,7 @@
     <value>Narrative</value>
   </data>
   <data name="OwnMessage" xml:space="preserve">
-    <value>OwnMessage</value>
+    <value>Own message</value>
   </data>
   <data name="PaymentDate" xml:space="preserve">
     <value>Payment Date</value>
@@ -248,5 +248,8 @@
   </data>
   <data name="Payments" xml:space="preserve">
     <value>Payments</value>
+  </data>
+  <data name="ConfirmPayment" xml:space="preserve">
+    <value>Confirm Payment</value>
   </data>
 </root>

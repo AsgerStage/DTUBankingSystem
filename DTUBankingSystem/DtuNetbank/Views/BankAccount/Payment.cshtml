@@ -8,44 +8,73 @@
 <h2>@title</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Opret ny overførsel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.PaymentModel.Debtor.Account.Value, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(m => m.PaymentModel.Debtor.Account.Value , Model.AccountSelectorItems, "Vælg Konto")
-                </div>
+    <h4>Opret ny overførsel</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Creditor.Account.Currency)
+    @Html.HiddenFor(model => model.Creditor.Account.Type)
+    <input Length="3" name="Creditor.Account.Type" type="hidden" value="BBAN_DK" />
+    <div id="creditorAccount">
+        <div class="form-group form-inline">
+            <div class="col-form-label" style="width:15%;">
+                @DtuNetbank.ResourceManager.GetResourceString("Creditor") @DtuNetbank.ResourceManager.GetResourceString("Account")
             </div>
-            @*<div class="form-group">
-                @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                </div>
-            </div>*@
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default"/>
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Creditor.Account.Value, Model.AccountSelectorItems, new { @class = "form-control" })
             </div>
         </div>
+    </div>
+
+    <div class="form-group form-inline">
+        <div class="form-label" style="width:15%;">
+            @DtuNetbank.ResourceManager.GetResourceString("OwnMessage")
+        </div>
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Creditor.Message, new { @class = "form-control col-md-4" })
+        </div>
+    </div>
+
+    <div id="debtorAccount">
+        @Html.HiddenFor(model => model.Debtor.Account.Currency)
+        <div class="form-group form-inline">
+            <div class="form-label" style="width:15%;">
+                @DtuNetbank.ResourceManager.GetResourceString("Debtor") @DtuNetbank.ResourceManager.GetResourceString("Account")
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Debtor.Account.Value, new { @class = "form-control" })
+                <div class="form-control">
+                    @Html.RadioButtonFor(model => model.Debtor.Account.Type, "BBAN_DK") BBAN &nbsp;
+                    @Html.RadioButtonFor(model => model.Debtor.Account.Type, "IBAN_DK") IBAN
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group form-inline">
+            <div class="form-label" style="width:15%;">
+                @DtuNetbank.ResourceManager.GetResourceString("Message")
+            </div>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Debtor.Message, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group form-inline">
+            <div class="form-label" style="width:15%;">
+                @DtuNetbank.ResourceManager.GetResourceString("Amount") (DKK)
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", @type = "number" })
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Create" class="btn btn-primary" />
     </div>
 }
 
