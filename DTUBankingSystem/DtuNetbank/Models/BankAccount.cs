@@ -64,15 +64,15 @@ namespace DtuNetbank.Models
 
         [Display(Name = "AvailableBalance", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("available_balance")]
-        public string AvailableBalance { get; set; }
+        public decimal AvailableBalance { get; set; }
 
         [Display(Name = "BookedBalance", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("booked_balance")]
-        public string BookedBalance { get; set; }
+        public decimal BookedBalance { get; set; }
 
         [Display(Name = "ValueDatedBalance", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("value_dated_balance")]
-        public string ValueDatedBalance { get; set; }
+        public decimal ValueDatedBalance { get; set; }
 
         [Display(Name = "Bank")]
         [JsonProperty("bank")]
@@ -84,11 +84,11 @@ namespace DtuNetbank.Models
 
         [Display(Name = "CreditLimit", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("credit_limit")]
-        public string CreditLimit { get; set; }
+        public decimal CreditLimit { get; set; }
 
         [Display(Name = "LatestTransactionBookingDate", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("latest_transaction_booking_date")]
-        public string LatestTransactionBookingDate { get; set; }
+        public DateTime LatestTransactionBookingDate { get; set; }
 
         [Display(Name = "Link")]
         [JsonProperty("_links")]

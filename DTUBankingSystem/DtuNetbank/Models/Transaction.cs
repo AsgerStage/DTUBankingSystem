@@ -86,11 +86,11 @@ namespace DtuNetbank.Models
 
         [Display(Name = "BookingDate", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("booking_date")]
-        public string BookingDate { get; set; }
+        public DateTime BookingDate { get; set; }
 
         [Display(Name = "ValueDate", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("value_date")]
-        public string ValueDate { get; set; }
+        public DateTime ValueDate { get; set; }
 
         [Display(Name = "TypeDescription", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("type_description")]
@@ -122,7 +122,7 @@ namespace DtuNetbank.Models
 
         [Display(Name = "TransactionDate", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("transaction_date")]
-        public string TransactionDate { get; set; }
+        public DateTime TransactionDate { get; set; }
 
         [Display(Name = "CardNumber", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("card_number")]
@@ -130,11 +130,11 @@ namespace DtuNetbank.Models
 
         [Display(Name = "PaymentDate", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("payment_date")]
-        public string PaymentDate { get; set; }
+        public DateTime PaymentDate { get; set; }
 
         [Display(Name = "Amount", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("amount")]
-        public string Amount { get; set; }
+        public decimal Amount { get; set; }
 
     }
 }
