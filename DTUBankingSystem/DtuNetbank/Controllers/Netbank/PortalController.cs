@@ -14,12 +14,6 @@ namespace DtuNetbank.Controllers.Netbank
     {
         private ApplicationUserManager _userManager;
 
-
-        public PortalController()
-        {
-            SetThreadCulture(new CultureInfo("da-DK"));
-        }
-
         public ApplicationUserManager UserManager
         {
             get
@@ -40,10 +34,35 @@ namespace DtuNetbank.Controllers.Netbank
             return applicationUser;
         }
 
-        protected void SetThreadCulture(CultureInfo newCulture)
+        /// <summary>
+        /// Gets the default culture from userdata and sets value to the current thread
+        /// If no value is stored then en-US is default
+        /// </summary>
+        protected void SetContextCulture()
         {
-            Thread.CurrentThread.CurrentCulture = newCulture;
-            Thread.CurrentThread.CurrentUICulture = newCulture;
+            var userDefLanguage = GetCurrentUser().DefaultCulture ?? "en-US";
+            SetThreadCulture(userDefLanguage);
+        }
+
+        [HttpPost]
+        public bool SetUserDefaultCulture(string culture, string returnUrl)
+        {
+            var req = HttpContext.Request.Path;
+            var user = GetCurrentUser();
+            using(var db = new ApplicationDbContext())
+            {
+                var userToUpdate = db.Users.Single(u => u.Id == user.Id);
+                userToUpdate.DefaultCulture = culture;
+                db.SaveChanges();
+            }
+            SetThreadCulture(culture);
+            return true;
+        }
+
+        protected void SetThreadCulture(string language = "en-US")
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
         }
 
     }

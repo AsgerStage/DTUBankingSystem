@@ -11,6 +11,7 @@ namespace DtuNetbank.Models
     public class ApplicationUser : IdentityUser
     {
         public string Name { get; set; }
+        public string DefaultCulture { get; set; } = "da-DK";
         public ICollection<string> BankAccountIds { get; set; }
         
     

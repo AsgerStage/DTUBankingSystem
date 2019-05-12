@@ -13,7 +13,7 @@ namespace DtuNetbank.Controllers.Netbank
         // GET: BankAccount
         public ActionResult Index()
         {
-            SetThreadCulture(new System.Globalization.CultureInfo("da-DK"));
+            SetContextCulture();
             var accountJsonModels = GetAccountsFromApi();
             var viewModel = new BankAccountsViewModel()
             {
@@ -26,6 +26,7 @@ namespace DtuNetbank.Controllers.Netbank
 
         public ActionResult RegisterBankAccount()
         {
+            SetContextCulture();
             var user = GetCurrentUser();
 
             var model = new BankAccount(){User = user };
@@ -47,6 +48,7 @@ namespace DtuNetbank.Controllers.Netbank
 
         private bool AddBankAccount(BankAccount model)
         {
+            SetContextCulture();
             if (string.IsNullOrWhiteSpace(model.Account_id)) return false;
             using (var db = new ApplicationDbContext())
             {
@@ -86,6 +88,7 @@ namespace DtuNetbank.Controllers.Netbank
 
         public ActionResult Transactions(string accountId, DateTime? startDate, DateTime? endDate, string continuationKey = "")
         {
+            SetContextCulture();
             var user = GetCurrentUser();
             if (!UserCanAccessAccountData(user.Id, accountId))
             {
@@ -123,6 +126,7 @@ namespace DtuNetbank.Controllers.Netbank
 
         public ActionResult Payment()
         {
+            SetContextCulture();
             var user = GetCurrentUser();
             var accounts = GetAccountsFromApi();
 
@@ -136,6 +140,7 @@ namespace DtuNetbank.Controllers.Netbank
         [HttpPost]
         public ActionResult Payment(Payment model)
         {
+            SetContextCulture();
             var user = GetCurrentUser();
             var accounts = GetAccountsFromApi();
             var viewModel = new PaymentViewModel()
@@ -148,6 +153,7 @@ namespace DtuNetbank.Controllers.Netbank
 
         public ActionResult PaymentStatus(string id)
         {
+            SetContextCulture();
             return View();
         }
 

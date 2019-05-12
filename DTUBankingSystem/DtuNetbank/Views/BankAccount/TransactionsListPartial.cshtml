@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DtuNetbank.Models.TransactionJsonModel>
+﻿@using DtuNetbank.Models.Extensions
+@model IEnumerable<DtuNetbank.Models.TransactionJsonModel>
 
 <table class="transactionsTable" style="width:100%;">
     <thead>
@@ -9,7 +10,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Narrative)
             </th>
-            <th>
+            <th style="text-align:center">
                 @Html.DisplayNameFor(model => model.Amount)
             </th>
             <th></th>
@@ -20,13 +21,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TransactionDate)
+                    @item.TransactionDate.ToShortDateString()
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Narrative)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
+                <td align="right">
+                    @item.Amount.ToViewFormat() @item.Currency
                 </td>
                 <td></td>
             </tr>

@@ -235,9 +235,14 @@
     <Compile Include="Migrations\201905081031085_updateIBAN.Designer.cs">
       <DependentUpon>201905081031085_updateIBAN.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905120238555_globalization.cs" />
+    <Compile Include="Migrations\201905120238555_globalization.Designer.cs">
+      <DependentUpon>201905120238555_globalization.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Extensions\ExtensionMethods.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NordeaApiManager.cs" />
@@ -265,6 +270,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\navbar.css" />
+    <Content Include="Content\img\flag-dk.png" />
+    <Content Include="Content\img\flag-uk.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -393,6 +400,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905081031085_updateIBAN.resx">
       <DependentUpon>201905081031085_updateIBAN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905120238555_globalization.resx">
+      <DependentUpon>201905120238555_globalization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.da.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

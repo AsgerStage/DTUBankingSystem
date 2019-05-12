@@ -1,6 +1,11 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
+    <ul class="nav navbar-nav navbar-right mr-auto">
+        <li class="nav-item"><a class="nav-link" onclick="saveCulture('da-DK')"><img style="width:25px; height:25px;" src="~/Content/img/flag-dk.png" /> DK</a></li>
+        <li class="nav-item"><a class="nav-link" onclick="saveCulture('en-UK')"><img style="width:25px; height:25px;" src="~/Content/img/flag-uk.png" /> EN</a></li>
+    </ul>
+
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
@@ -17,3 +22,17 @@ else
         <li class="nav-item">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
     </ul>
 }
+
+
+<script type="text/javascript">
+    function saveCulture(lan) {
+        $.post("/Portal/SetUserDefaultCulture",
+            {
+                culture: lan,
+                returnUrl: location.href
+            },
+            function () {
+                location.reload();
+            });
+    }
+</script>

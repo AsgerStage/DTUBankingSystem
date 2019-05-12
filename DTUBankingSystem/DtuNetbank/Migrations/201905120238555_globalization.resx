@@ -117,103 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Account" xml:space="preserve">
-    <value>Konto</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="AccountName" xml:space="preserve">
-    <value>Kontonavn</value>
-  </data>
-  <data name="AccountNumber" xml:space="preserve">
-    <value>Kontonummer</value>
-  </data>
-  <data name="AccountType" xml:space="preserve">
-    <value>Kontotype</value>
-  </data>
-  <data name="Amount" xml:space="preserve">
-    <value>Beløb</value>
-  </data>
-  <data name="AvailableBalance" xml:space="preserve">
-    <value>Disponibel Saldo</value>
-  </data>
-  <data name="BookedBalance" xml:space="preserve">
-    <value>Reserveret Saldo</value>
-  </data>
-  <data name="BookingDate" xml:space="preserve">
-    <value>Bogføringsdato</value>
-  </data>
-  <data name="CardNumber" xml:space="preserve">
-    <value>Kortnummer</value>
-  </data>
-  <data name="CounterpartyName" xml:space="preserve">
-    <value>Modpartens Navn</value>
-  </data>
-  <data name="Country" xml:space="preserve">
-    <value>Land</value>
-  </data>
-  <data name="CreditLimit" xml:space="preserve">
-    <value>Kreditgrænse</value>
-  </data>
-  <data name="Creditor" xml:space="preserve">
-    <value>Kreditor</value>
-  </data>
-  <data name="Currency" xml:space="preserve">
-    <value>Valuta</value>
-  </data>
-  <data name="Debtor" xml:space="preserve">
-    <value>Debitor</value>
-  </data>
-  <data name="EntryDate" xml:space="preserve">
-    <value>Indgangsdato</value>
-  </data>
-  <data name="LatestTransactionBookingDate" xml:space="preserve">
-    <value>Seneste Transaktion</value>
-  </data>
-  <data name="Message" xml:space="preserve">
-    <value>Besked</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Navn</value>
-  </data>
-  <data name="Narrative" xml:space="preserve">
-    <value>Beskrivelse</value>
-  </data>
-  <data name="OwnMessage" xml:space="preserve">
-    <value>Eget Besked</value>
-  </data>
-  <data name="PaymentDate" xml:space="preserve">
-    <value>Batalingsdato</value>
-  </data>
-  <data name="PaymentStatus" xml:space="preserve">
-    <value>Betalingsstatus</value>
-  </data>
-  <data name="Product" xml:space="preserve">
-    <value>Produkt</value>
-  </data>
-  <data name="Reference" xml:space="preserve">
-    <value>Reference</value>
-  </data>
-  <data name="TransactionDate" xml:space="preserve">
-    <value>Transaktionsdato</value>
-  </data>
-  <data name="TransactionId" xml:space="preserve">
-    <value>Transaktions ID</value>
-  </data>
-  <data name="Transactions" xml:space="preserve">
-    <value>Transaktioner</value>
-  </data>
-  <data name="Type" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="TypeDescription" xml:space="preserve">
-    <value>Typebeskrivelse</value>
-  </data>
-  <data name="Value" xml:space="preserve">
-    <value>Værdi</value>
-  </data>
-  <data name="ValueDate" xml:space="preserve">
-    <value>Valørdato</value>
-  </data>
-  <data name="ValueDatedBalance" xml:space="preserve">
-    <value>Valørdato Saldo</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>
