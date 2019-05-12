@@ -88,6 +88,24 @@ namespace DtuNetbank.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Overview.
+        /// </summary>
+        public static string AccountOverview {
+            get {
+                return ResourceManager.GetString("AccountOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accounts.
+        /// </summary>
+        public static string Accounts {
+            get {
+                return ResourceManager.GetString("Accounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Type.
         /// </summary>
         public static string AccountType {
@@ -97,11 +115,29 @@ namespace DtuNetbank.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Account.
+        /// </summary>
+        public static string AddAccount {
+            get {
+                return ResourceManager.GetString("AddAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string Amount {
             get {
                 return ResourceManager.GetString("Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DTU Netbank.
+        /// </summary>
+        public static string AppName {
+            get {
+                return ResourceManager.GetString("AppName", resourceCulture);
             }
         }
         
@@ -178,11 +214,29 @@ namespace DtuNetbank.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Credit Transaction.
+        /// </summary>
+        public static string CreditTransaction {
+            get {
+                return ResourceManager.GetString("CreditTransaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Currency.
         /// </summary>
         public static string Currency {
             get {
                 return ResourceManager.GetString("Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debit Transaction.
+        /// </summary>
+        public static string DebitTransaction {
+            get {
+                return ResourceManager.GetString("DebitTransaction", resourceCulture);
             }
         }
         
@@ -210,6 +264,24 @@ namespace DtuNetbank.Properties {
         public static string LatestTransactionBookingDate {
             get {
                 return ResourceManager.GetString("LatestTransactionBookingDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log in.
+        /// </summary>
+        public static string LogIn {
+            get {
+                return ResourceManager.GetString("LogIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log out.
+        /// </summary>
+        public static string LogOut {
+            get {
+                return ResourceManager.GetString("LogOut", resourceCulture);
             }
         }
         
@@ -250,11 +322,29 @@ namespace DtuNetbank.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payment.
+        /// </summary>
+        public static string Payment {
+            get {
+                return ResourceManager.GetString("Payment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payment Date.
         /// </summary>
         public static string PaymentDate {
             get {
                 return ResourceManager.GetString("PaymentDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payments.
+        /// </summary>
+        public static string Payments {
+            get {
+                return ResourceManager.GetString("Payments", resourceCulture);
             }
         }
         
@@ -282,6 +372,15 @@ namespace DtuNetbank.Properties {
         public static string Reference {
             get {
                 return ResourceManager.GetString("Reference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Transactions.
+        /// </summary>
+        public static string ShowTransactions {
+            get {
+                return ResourceManager.GetString("ShowTransactions", resourceCulture);
             }
         }
         

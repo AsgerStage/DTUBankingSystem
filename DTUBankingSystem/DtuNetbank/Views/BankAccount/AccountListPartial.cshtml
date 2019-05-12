@@ -33,7 +33,7 @@
         <td align="right">
             @item.AvailableBalance.ToViewFormat() @Html.DisplayFor(modelItem => item.Currency)
         </td>
-        <td>@Html.ActionLink("Show Transactions", "Transactions", routeValues: new {accountId = item.Id})</td>
+        <td>@Html.ActionLink(DtuNetbank.ResourceManager.GetResourceString("ShowTransactions"), "Transactions", routeValues: new {accountId = item.Id})</td>
     </tr>
 }
 

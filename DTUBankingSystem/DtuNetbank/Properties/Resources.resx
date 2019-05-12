@@ -156,8 +156,14 @@
   <data name="Creditor" xml:space="preserve">
     <value>Creditor</value>
   </data>
+  <data name="CreditTransaction" xml:space="preserve">
+    <value>Credit Transaction</value>
+  </data>
   <data name="Currency" xml:space="preserve">
     <value>Currency</value>
+  </data>
+  <data name="DebitTransaction" xml:space="preserve">
+    <value>Debit Transaction</value>
   </data>
   <data name="Debtor" xml:space="preserve">
     <value>Debtor</value>
@@ -215,5 +221,32 @@
   </data>
   <data name="ValueDatedBalance" xml:space="preserve">
     <value>Value Dated Balance</value>
+  </data>
+  <data name="AccountOverview" xml:space="preserve">
+    <value>Account Overview</value>
+  </data>
+  <data name="Accounts" xml:space="preserve">
+    <value>Accounts</value>
+  </data>
+  <data name="AddAccount" xml:space="preserve">
+    <value>Add Account</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>DTU Netbank</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="ShowTransactions" xml:space="preserve">
+    <value>Show Transactions</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Payment</value>
+  </data>
+  <data name="Payments" xml:space="preserve">
+    <value>Payments</value>
   </data>
 </root>

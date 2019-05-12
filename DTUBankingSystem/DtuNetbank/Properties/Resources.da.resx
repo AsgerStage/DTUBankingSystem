@@ -156,8 +156,14 @@
   <data name="Creditor" xml:space="preserve">
     <value>Kreditor</value>
   </data>
+  <data name="CreditTransaction" xml:space="preserve">
+    <value>Kredit Transaktion</value>
+  </data>
   <data name="Currency" xml:space="preserve">
     <value>Valuta</value>
+  </data>
+  <data name="DebitTransaction" xml:space="preserve">
+    <value>Debet Transaktion</value>
   </data>
   <data name="Debtor" xml:space="preserve">
     <value>Debitor</value>
@@ -215,5 +221,29 @@
   </data>
   <data name="ValueDatedBalance" xml:space="preserve">
     <value>Valørdato Saldo</value>
+  </data>
+  <data name="AccountOverview" xml:space="preserve">
+    <value>Kontooversigt</value>
+  </data>
+  <data name="Accounts" xml:space="preserve">
+    <value>Konti</value>
+  </data>
+  <data name="AddAccount" xml:space="preserve">
+    <value>Tilføj Konto</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Log ind</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Log ud</value>
+  </data>
+  <data name="ShowTransactions" xml:space="preserve">
+    <value>Vis transaktioner</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Overførsel</value>
+  </data>
+  <data name="Payments" xml:space="preserve">
+    <value>Overførsler</value>
   </data>
 </root>

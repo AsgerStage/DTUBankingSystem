@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>@ViewBag.Title - @DtuNetbank.ResourceManager.GetResourceString("AppName")</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -11,13 +11,13 @@
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
         <div class="container">
             
-            @Html.ActionLink("DTU Netbank", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink(DtuNetbank.ResourceManager.GetResourceString("AppName"), "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
                 @if (Request.IsAuthenticated)
                 {
                     <ul class="nav navbar-nav mr-auto">
-                        <li class="nav-item">@Html.ActionLink("Accounts", "Index", "BankAccount", null, new { @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink("Register Bank Account", "RegisterBankAccount", "BankAccount", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink(DtuNetbank.ResourceManager.GetResourceString("Accounts"), "Index", "BankAccount", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink(DtuNetbank.ResourceManager.GetResourceString("AddAccount"), "RegisterBankAccount", "BankAccount", null, new { @class = "nav-link" })</li>
                     </ul>
                 }
                 else

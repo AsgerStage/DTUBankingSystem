@@ -1,6 +1,14 @@
 ﻿@using DtuNetbank.Models.Extensions
 @model IEnumerable<DtuNetbank.Models.TransactionJsonModel>
 
+@{ 
+    var transactionTypes = Model.Select(t => t.Type).Distinct();
+    foreach(var type in transactionTypes)
+    {
+        <input type="checkbox" value="@type" checked onchange="toggleTransactionTypes('@type')"/> <b> @DtuNetbank.ResourceManager.GetResourceString(type) &nbsp; &nbsp;</b> 
+    }
+}
+
 <table class="transactionsTable" style="width:100%;">
     <thead>
         <tr>
@@ -19,7 +27,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr name="@item.Type">
                 <td>
                     @item.TransactionDate.ToShortDateString()
                 </td>
@@ -34,3 +42,9 @@
         }
     </tbody>
 </table>
+
+<script type="text/javascript">
+    function toggleTransactionTypes(name) {
+        $('[name="' + name + '"]').toggle();
+    }
+</script>

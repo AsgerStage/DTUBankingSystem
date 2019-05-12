@@ -1,10 +1,11 @@
 ﻿@model DtuNetbank.Models.Payments.PaymentViewModel
 
 @{
-    ViewBag.Title = "Payment";
+    var title = DtuNetbank.ResourceManager.GetResourceString("Payment");
+    ViewBag.Title = title;
 }
 
-<h2>Payment</h2>
+<h2>@title</h2>
 
 
 @using (Html.BeginForm()) 
@@ -47,10 +48,6 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -1,9 +1,10 @@
 ﻿@model DtuNetbank.Models.BankAccountsViewModel
 
 @{
-    ViewBag.Title = "Konti Oversigt";
+    var title = DtuNetbank.ResourceManager.GetResourceString("AccountOverview");
+    ViewBag.Title = title;
 }
 
-<h2>Konti Oversigt</h2>
+<h2>@title</h2>
 
 @Html.Partial("AccountListPartial", Model.BankAccounts)

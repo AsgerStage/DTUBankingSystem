@@ -10,6 +10,7 @@ using System.Globalization;
 namespace DtuNetbank.Controllers.Netbank
 {
     [Authorize]
+    [RequireHttps]
     public class PortalController : Controller
     {
         private ApplicationUserManager _userManager;
