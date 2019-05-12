@@ -61,7 +61,7 @@ namespace DtuNetbank.Models
         [JsonProperty("continuation_key")]
         public string ContinuationKey { get; set; }
 
-        [Display(Name = "Transactions")]
+        [Display(Name = "Transactions", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("transactions")]
         public ICollection<TransactionJsonModel> Transactions { get; set; }
 
@@ -76,31 +76,31 @@ namespace DtuNetbank.Models
         [JsonProperty("_type")]
         public string Type { get; set; }
 
-        [Display(Name = "Transaction ID")]
+        [Display(Name = "TransactionId", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("transaction_id")]
         public string TransactionId { get; set; }
 
-        [Display(Name = "Currency")]
+        [Display(Name = "Currency", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("currency")]
         public string Currency { get; set; }
 
-        [Display(Name = "Booking Date")]
+        [Display(Name = "BookingDate", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("booking_date")]
         public string BookingDate { get; set; }
 
-        [Display(Name = "Value Date")]
+        [Display(Name = "ValueDate", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("value_date")]
         public string ValueDate { get; set; }
 
-        [Display(Name = "Type Description")]
+        [Display(Name = "TypeDescription", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("type_description")]
         public string TypeDescription { get; set; }
 
-        [Display(Name = "Narrative")]
+        [Display(Name = "Narrative", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("narrative")]
         public string Narrative { get; set; }
 
-        [Display(Name = "Message")]
+        [Display(Name = "Message", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("message")]
         public string Message { get; set; }
 
@@ -108,31 +108,31 @@ namespace DtuNetbank.Models
         [JsonProperty("status")]
         public string Status { get; set; }
 
-        [Display(Name = "Reference")]
+        [Display(Name = "Reference", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("reference")]
         public string Reference { get; set; }
 
-        [Display(Name = "Own Message")]
+        [Display(Name = "OwnMessage", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("own_message")]
         public string OwnMessage { get; set; }
 
-        [Display(Name = "Counterparty Name")]
+        [Display(Name = "CounterpartyName", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("counterparty_name")]
         public string CounterpartyName { get; set; }
 
-        [Display(Name = "Transaction Date")]
+        [Display(Name = "TransactionDate", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("transaction_date")]
         public string TransactionDate { get; set; }
 
-        [Display(Name = "Card Number")]
+        [Display(Name = "CardNumber", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("card_number")]
         public string CardNumber { get; set; }
 
-        [Display(Name = "Payment Date")]
+        [Display(Name = "PaymentDate", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("payment_date")]
         public string PaymentDate { get; set; }
 
-        [Display(Name = "Amount")]
+        [Display(Name = "Amount", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("amount")]
         public string Amount { get; set; }
 

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Data.Entity;
-using System.Security.Principal;
+﻿using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DtuNetbank.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Logging;
+using System.Threading;
+using System.Globalization;
 
 namespace DtuNetbank.Controllers.Netbank
 {
@@ -16,6 +13,12 @@ namespace DtuNetbank.Controllers.Netbank
     public class PortalController : Controller
     {
         private ApplicationUserManager _userManager;
+
+
+        public PortalController()
+        {
+            SetThreadCulture(new CultureInfo("da-DK"));
+        }
 
         public ApplicationUserManager UserManager
         {
@@ -35,6 +38,12 @@ namespace DtuNetbank.Controllers.Netbank
             var currentUserName = User.Identity.GetUserName();
             var applicationUser = users.Single(user => user.UserName == currentUserName);
             return applicationUser;
+        }
+
+        protected void SetThreadCulture(CultureInfo newCulture)
+        {
+            Thread.CurrentThread.CurrentCulture = newCulture;
+            Thread.CurrentThread.CurrentUICulture = newCulture;
         }
 
     }

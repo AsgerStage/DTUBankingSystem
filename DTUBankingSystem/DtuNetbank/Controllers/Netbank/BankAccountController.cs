@@ -13,6 +13,7 @@ namespace DtuNetbank.Controllers.Netbank
         // GET: BankAccount
         public ActionResult Index()
         {
+            SetThreadCulture(new System.Globalization.CultureInfo("da-DK"));
             var accountJsonModels = GetAccountsFromApi();
             var viewModel = new BankAccountsViewModel()
             {

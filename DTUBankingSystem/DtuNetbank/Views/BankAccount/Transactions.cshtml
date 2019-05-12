@@ -1,44 +1,24 @@
 ﻿@model DtuNetbank.Models.TransactionViewModel
 
 @{
-    ViewBag.Title = "Transaktioner for "+ Model.AccountNumber;
-    var minDate = Model.Transactions.Min(t => t.transaction_date);
-    var maxDate = Model.Transactions.Max(t => t.transaction_date);
+    ViewBag.Title = "Transaktioner for " + Model.AccountNumber;
+    var minDate = Model.Transactions.Min(t => t.TransactionDate);
+    var maxDate = Model.Transactions.Max(t => t.TransactionDate);
 }
 
 
 @using (Html.BeginForm("transactions", "BankAccount", FormMethod.Get))
-{ 
+{
     @Html.Hidden("accountId", Model.AccountNumber)
     <label>Start Date</label>
-    <input type="date" name="startDate" value="@minDate"/>
+    <input type="date" name="startDate" value="@minDate" />
     <label>End Date</label>
-    <input type="date" name="endDate" value="@maxDate"/>
-    <input type="submit" value="Update" class="btn btn-primary"/>
+    <input type="date" name="endDate" value="@maxDate" />
+    <input type="submit" value="Update" class="btn btn-primary" />
 }
 
 <h3>Transaktioner for @Model.AccountNumber </h3>
-<table style="width: 100%">
-    <thead>
-        <tr>
-            <th>Transaktions dato</th>
-            <th>Beskrivelse</th>
-            <th style="text-align: right">Beløb (DKK)</th>
-        </tr>
-    </thead>
-    
-    <tbody>
-    @foreach (var transaction in Model.Transactions)
-    {
-        <tr>
-            <td>@transaction.transaction_date</td>
-            <td>@transaction.narrative</td>
-            <td style="text-align: right">@transaction.amount</td>
-        </tr>
-    }
-    </tbody>
-
-</table>
+@Html.Partial("TransactionsListPartial", Model.Transactions)
 
 
-@Html.ActionLink("Hent flere", "Transactions", new { accountId = Model.AccountNumber, startDate = Model.StartDate, endDate = Model.EndDate, continuationKey = Model.ContinuationKey})
+@Html.ActionLink("Hent flere", "Transactions", new { accountId = Model.AccountNumber, startDate = Model.StartDate, endDate = Model.EndDate, continuationKey = Model.ContinuationKey })

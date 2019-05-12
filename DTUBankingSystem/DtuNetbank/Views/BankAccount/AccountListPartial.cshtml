@@ -6,16 +6,16 @@
 <table class="table">
     <tr>
         <th>
-            Kontonummer
+            @Html.DisplayNameFor(model => model.AccountNumbers)
         </th>
         <th>
-            Konto Navn
+            @Html.DisplayNameFor(model => model.AccountName)
         </th>
         <th>
-            Bank
+            @Html.DisplayNameFor(model => model.Bank)
         </th>
-        <th>
-            Saldo
+        <th align="right">
+            @Html.DisplayNameFor(model => model.AvailableBalance)
         </th>
         <th></th>
     </tr>
@@ -24,18 +24,18 @@
     <tr>
        
         <td>
-            @Html.DisplayFor(modelItem => item.account_numbers.First().value)
+            @Html.DisplayFor(modelItem => item.AccountNumbers.First().Value)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.account_name)
+            @Html.DisplayFor(modelItem => item.AccountName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.bank.name)
+            @Html.DisplayFor(modelItem => item.Bank.Name)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.available_balance)
+        <td align="right">
+            @Html.DisplayFor(modelItem => item.AvailableBalance) @Html.DisplayFor(modelItem => item.Currency)
         </td>
-        <td>@Html.ActionLink("Show Transactions", "Transactions", routeValues: new {accountId = item._id})</td>
+        <td>@Html.ActionLink("Show Transactions", "Transactions", routeValues: new {accountId = item.Id})</td>
     </tr>
 }
 

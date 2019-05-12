@@ -245,6 +245,16 @@
     <Compile Include="Models\PaymentModels.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.da.Designer.cs">
+      <DependentUpon>Resources.da.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +362,7 @@
     <Content Include="Views\BankAccount\Register.cshtml" />
     <Content Include="Views\BankAccount\Index.cshtml" />
     <Content Include="Views\BankAccount\Payment.cshtml" />
+    <Content Include="Views\BankAccount\TransactionsListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -382,6 +393,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905081031085_updateIBAN.resx">
       <DependentUpon>201905081031085_updateIBAN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.da.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.da.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,7 @@ namespace DtuNetbank.Models
         public Guid Id { get; set; } = Guid.NewGuid();
         public Guid UserId { get; set; }
         public ApplicationUser User { get; set; }
-        [Display(Name = "Kontonummer")]
+        [Display(Name = "AccountNumber", ResourceType = typeof(Properties.Resources))]
         public string AccountNumber { get; set; }
         [Display(Name = "Konto beskrivelse")]
         public string AccountName { get; set; }
@@ -38,39 +38,39 @@ namespace DtuNetbank.Models
 
     public class BankAccountJsonModel
     {
-        [Display(Name = "Country")]
+        [Display(Name = "Country", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("country")]
         public string Country { get; set; }
 
-        [Display(Name = "Account Numbers")]
+        [Display(Name = "AccountNumber", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("account_numbers")]
         public ICollection<AccountNumber> AccountNumbers { get; set; }
 
-        [Display(Name = "Currency")]
+        [Display(Name = "Currency", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("currency")]
         public string Currency { get; set; }
 
-        [Display(Name = "Account Name")]
+        [Display(Name = "AccountName", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("account_name")]
         public string AccountName { get; set; }
 
-        [Display(Name = "Product")]
+        [Display(Name = "Product", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("product")]
         public string Product { get; set; }
 
-        [Display(Name = "Account Type")]
+        [Display(Name = "AccountType", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("account_type")]
         public string AccountType { get; set; }
 
-        [Display(Name = "Available Balance")]
+        [Display(Name = "AvailableBalance", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("available_balance")]
         public string AvailableBalance { get; set; }
 
-        [Display(Name = "Booked Balance")]
+        [Display(Name = "BookedBalance", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("booked_balance")]
         public string BookedBalance { get; set; }
 
-        [Display(Name = "Value Dated Balance")]
+        [Display(Name = "ValueDatedBalance", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("value_dated_balance")]
         public string ValueDatedBalance { get; set; }
 
@@ -82,15 +82,15 @@ namespace DtuNetbank.Models
         [JsonProperty("status")]
         public string Status { get; set; }
 
-        [Display(Name = "Credit Limit")]
+        [Display(Name = "CreditLimit", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("credit_limit")]
         public string CreditLimit { get; set; }
 
-        [Display(Name = "Latest Transaction Booking Date")]
+        [Display(Name = "LatestTransactionBookingDate", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("latest_transaction_booking_date")]
         public string LatestTransactionBookingDate { get; set; }
 
-        [Display(Name = "Links")]
+        [Display(Name = "Link")]
         [JsonProperty("_links")]
         public ICollection<Link> Links { get; set; }
 
@@ -105,14 +105,14 @@ namespace DtuNetbank.Models
         [JsonProperty("rel")]
         public string Relative { get; set; }
 
-        [Display(Name = "Hyper Reference")]
+        [Display(Name = "href")]
         [JsonProperty("href")]
         public string HRef { get; set; }
     }
 
     public class Bank
     {
-        [Display(Name = "Name")]
+        [Display(Name = "Name", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("name")]
         public string Name { get; set; }
 
@@ -120,7 +120,7 @@ namespace DtuNetbank.Models
         [JsonProperty("bic")]
         public string BIC { get; set; }
 
-        [Display(Name = "Country")]
+        [Display(Name = "Country", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("country")]
         public string Country { get; set; }
 
@@ -128,7 +128,7 @@ namespace DtuNetbank.Models
 
     public class AccountNumber
     {
-        [Display(Name = "Value")]
+        [Display(Name = "Value", ResourceType = typeof(Properties.Resources))]
         [JsonProperty("value")]
         public string Value { get; set; }
 
