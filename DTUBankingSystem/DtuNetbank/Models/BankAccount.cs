@@ -1,32 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
 namespace DtuNetbank.Models
 {
     public class BankAccount
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        [Key, Column(Order = 1)]
         public Guid UserId { get; set; }
-        public ApplicationUser User { get; set; }
-        [Display(Name = "AccountNumber", ResourceType = typeof(Properties.Resources))]
-        public string AccountNumber { get; set; }
-        [Display(Name = "Konto beskrivelse")]
-        public string AccountName { get; set; }
+        public virtual ApplicationUser User { get; set; }
         [Display(Name = "ID")]
+        [Key, Column(Order = 0)]
         public string Account_id { get; set; }
-        [Display(Name = "Saldo")]
-        public decimal Balance { get; set;}
-
-        public ICollection<Transaction> Transactions { get; set; }
-    }
-    public class RegisterAccountModel
-    {
-     
-        [Required]
-        [Display(Name = "Account_id")]
-        public string IBAN { get; set; }
     }
 
     public class BankAccountsViewModel

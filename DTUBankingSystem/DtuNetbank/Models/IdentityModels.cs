@@ -12,7 +12,6 @@ namespace DtuNetbank.Models
     {
         public string Name { get; set; }
         public string DefaultCulture { get; set; } = "da-DK";
-        public ICollection<string> BankAccountIds { get; set; }
         
     
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -37,7 +36,6 @@ namespace DtuNetbank.Models
         }
 
         public DbSet<BankAccount> BankAccounts { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
 
     }
 }

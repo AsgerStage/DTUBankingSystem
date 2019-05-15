@@ -75,21 +75,14 @@ namespace DtuNetbank.Controllers
             };
             return View(model);
         }
-        public async Task<ActionResult> ViewTransactions(string id)
-        {
-            ViewBag.id = id;
-            Transaction testdata = new Transaction
-            {
-                TransactionAmount = 200
-            };
-            Transaction[] transactions = {testdata};
-            ViewBag.Transactions = transactions;
-            return View();
-        }
+
+
         public async Task<ActionResult> RemoveAccountID(string id)
         {
             return RedirectToAction("Index", new { Message = ManageMessageId.Error});
         }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddAccountID(string AccountID)
