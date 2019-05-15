@@ -252,4 +252,10 @@
   <data name="ConfirmPayment" xml:space="preserve">
     <value>Confirm Payment</value>
   </data>
+  <data name="CreatePayment" xml:space="preserve">
+    <value>Create new payment</value>
+  </data>
+  <data name="Greetings" xml:space="preserve">
+    <value>Hi</value>
+  </data>
 </root>

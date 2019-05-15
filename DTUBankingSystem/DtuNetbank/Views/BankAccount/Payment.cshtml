@@ -5,14 +5,13 @@
     ViewBag.Title = title;
 }
 
-<h2>@title</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <h4>Opret ny overførsel</h4>
+    <h2>@DtuNetbank.ResourceManager.GetResourceString("CreatePayment")</h2>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Creditor.Account.Currency)

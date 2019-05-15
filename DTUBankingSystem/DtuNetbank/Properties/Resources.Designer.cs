@@ -19,7 +19,7 @@ namespace DtuNetbank.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -205,6 +205,15 @@ namespace DtuNetbank.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create new payment.
+        /// </summary>
+        public static string CreatePayment {
+            get {
+                return ResourceManager.GetString("CreatePayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Credit Limit.
         /// </summary>
         public static string CreditLimit {
@@ -264,6 +273,15 @@ namespace DtuNetbank.Properties {
         public static string EntryDate {
             get {
                 return ResourceManager.GetString("EntryDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hi.
+        /// </summary>
+        public static string Greetings {
+            get {
+                return ResourceManager.GetString("Greetings", resourceCulture);
             }
         }
         

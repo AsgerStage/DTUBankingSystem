@@ -249,4 +249,10 @@
   <data name="ConfirmPayment" xml:space="preserve">
     <value>Bekræft Overførsel</value>
   </data>
+  <data name="CreatePayment" xml:space="preserve">
+    <value>Opret ny overførsel</value>
+  </data>
+  <data name="Greetings" xml:space="preserve">
+    <value>Hej</value>
+  </data>
 </root>
