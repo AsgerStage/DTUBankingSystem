@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System.Threading;
 using System.Globalization;
+using System;
 
 namespace DtuNetbank.Controllers.Netbank
 {
@@ -60,10 +61,19 @@ namespace DtuNetbank.Controllers.Netbank
             return true;
         }
 
-        protected void SetThreadCulture(string language = "en-US")
+        protected void SetThreadCulture(string language)
         {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(language);
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            CultureInfo culture;
+            try
+            {
+                culture = new CultureInfo(language);
+            }
+            catch (Exception e)
+            {
+                culture = new CultureInfo("da-DK");
+            }
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
         }
 
     }
