@@ -52,6 +52,8 @@ namespace DtuNetbank.Models.Payments
         [Display(Name = "Currency", ResourceType = typeof(Properties.Resources))]
         [JsonProperty(PropertyName = "currency")]
         public string Currency  { get; set; }
+
+        
     }
 
     public class Debtor

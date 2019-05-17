@@ -69,14 +69,72 @@ namespace DtuNetbank.Tests.Models
         {
             var nordeaApiManager = new NordeaAPIv3Manager();
             var payments = nordeaApiManager.GetPayments();
-            if (payments.Count > 0)
+            if (payments.Count == 0)
+            {
+                Creditor afsender = new Creditor { Account = new Account { Currency = "DKK", Value = "20301544117544", Type = "BBAN_DK" }, Message = "Test2" };
+                Debtor modtager = new Debtor { Account = new Account { Currency = "DKK", Value = "20301544118028", Type = "BBAN_DK" }, Message = "Test" };
+                nordeaApiManager.InitiatePayment(afsender, modtager, 10.0M, "DKK");
+            }
+            payments = nordeaApiManager.GetPayments();
+            Assert.IsTrue(payments.Count > 0);
+            if(payments.Count > 0)
             {
                 var payment = payments.ElementAt(0);
                 var id = payment.Id;
                 var _payment = nordeaApiManager.GetPayment(id);
-                Assert.AreEqual(payment , _payment);
-                
+                Assert.IsTrue(PaymentEqual(payment, _payment));
+            } 
+        }
+        public bool PaymentEqual(Payment p1, Payment p2)
+        {
+            if (!(p1.Links == null && p2.Links == null))
+            {
+                if (p1.Links != null && p2.Links != null)
+                {
+                    if (p1.Links.Count != p2.Links.Count)
+                        return false;
+                    for (int i = 0; i < p1.Links.Count; i++)
+                    {
+                        Link l1 = p1.Links.ElementAt(i);
+                        Link l2 = p2.Links.ElementAt(i);
+                        if (l1.HRef != l2.HRef || l1.Relative != l2.Relative)
+                            return false;
+                    }
+                }
+                else
+                    return false;
             }
+            
+            
+            Reference ref1 = p1.Creditor.reference;
+            Reference ref2 = p2.Creditor.reference;
+            if(!(ref1 == null && ref2 == null))
+            {
+                if (ref1 != null && ref2 != null)
+                {
+                    if (ref1.Type != ref2.Type || ref1.Value != ref2.Value)
+                        return false;
+                }
+                else
+                    return false;
+            }
+            
+            
+            return p1.EntryDateTime == p2.EntryDateTime &&
+                   p1.PaymentStatus == p2.PaymentStatus &&
+                   p1.Id == p2.Id &&
+                   p1.Amount == p2.Amount &&
+                   p1.Currency == p2.Currency &&
+                   p1.Debtor.Account.Currency == p2.Debtor.Account.Currency &&
+                   p1.Debtor.Account.Type == p2.Debtor.Account.Type &&
+                   p1.Debtor.Account.Value == p2.Debtor.Account.Value &&
+                   p1.Debtor.Message == p2.Debtor.Message &&
+                   p1.Creditor.Account.Currency == p2.Creditor.Account.Currency &&
+                   p1.Creditor.Account.Type == p2.Creditor.Account.Type &&
+                   p1.Creditor.Account.Value == p2.Creditor.Account.Value &&
+                   p1.Creditor.Message == p2.Creditor.Message &&
+                   p1.Creditor.Name == p2.Creditor.Name;
+            
         }
 
         [TestMethod]
